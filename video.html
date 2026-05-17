@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vidéos - SUHOX_</title>
+    <link rel="icon" href="8caad655-b47e-44da-b65c-c3bf5e8be028.png">
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #111;
+    color: white;
+}
+
+/* navbar */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: #111;
+    padding: 15px 0;
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+    z-index: 1000;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.navbar a:hover {
+    color: red;
+}
+
+/* content */
+.container {
+    padding-top: 120px;
+    text-align: center;
+}
+
+.container h1 {
+    font-size: 45px;
+    margin-bottom: 10px;
+}
+
+.container p {
+    color: #aaa;
+    font-size: 18px;
+    margin-bottom: 40px;
+}
+
+/* video cards */
+.video-grid {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 25px;
+    padding: 20px;
+}
+
+.video-card {
+    background: #1a1a1a;
+    border-radius: 15px;
+    overflow: hidden;
+    width: 320px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.5);
+    transition: transform 0.3s ease;
+}
+
+.video-card:hover {
+    transform: scale(1.05);
+}
+
+.video-card img {
+    width: 100%;
+    display: block;
+}
+
+.video-card h3 {
+    padding: 15px;
+    margin: 0;
+    font-size: 20px;
+}
+
+.video-card a {
+    display: block;
+    padding: 15px;
+    background: red;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* footer */
+footer {
+    text-align: center;
+    padding: 30px;
+    margin-top: 50px;
+    color: #666;
+    border-top: 1px solid #222;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #111;
+    color: white;
+    animation: fadeIn 1s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<nav class="navbar">
+    <a href="index.html">Accueil</a>
+    <a href="subscribe.html">S'abonner</a>
+    <a href="video.html">Vidéos</a>
+    <a href="a propos.html">À propos</a>
+    <a href="socials.html">Réseaux</a>
+</nav>
+
+<div class="container">
+    <h1>Mes vidéos 🎮</h1>
+    <p>Découvre mes derniers contenus gaming</p>
+
+    <div class="video-grid">
+
+        <div class="video-card">
+            <h3>Ma dernière vidéo</h3>
+            <a href="https://youtu.be/ybVsAmIBSlc?si=9BGk4JvUrib5C5Wr" target="_blank">Regarder</a>
+        </div>
+
+        <div class="video-card">
+            <h3>mon dernier post</h3>
+            <a href="http://youtube.com/post/Ugkxoy11jzZ_NQalghN7321vZUaHwM1Ph86F?si=-1S_bMYZOuuLH0AM" target="_blank">Regarder</a>
+        </div>
+
+        <div class="video-card">
+            <h3>mon dernier short</h3>
+            <a href="https://youtube.com/shorts/ZGewcyyk1TQ?si=HyMQ5O39H_kNP2yP" target="_blank">Regarder</a>
+        </div>
+
+    </div>
+</div>
+
+<footer>
+    © 2026 SUHOX_ - All rights reserved
+</footer>
+
+</body>
+</html>

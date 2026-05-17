@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>site de SUHOX_</title>
+<link rel="icon" href="8caad655-b47e-44da-b65c-c3bf5e8be028.png">
+<style>
+body {
+    margin: 0;
+    padding-top: 80px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    background: #1e1e1e;
+    font-family: Arial, sans-serif;
+    color: white;
+}
+
+/* navbar */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: #111;
+    padding: 15px 0;
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+    z-index: 1000;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.navbar a:hover {
+    color: red;
+}
+
+/* profil */
+.profile {
+    text-align: center;
+}
+
+.profile img {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid red;
+    box-shadow: 0 0 20px rgba(255,0,0,0.7);
+}
+
+.profile h1 {
+    margin: 10px 0 5px;
+    font-size: 28px;
+}
+
+.profile p {
+    margin: 0;
+    color: #bbb;
+}
+
+/* bouton */
+.subscribe-btn {
+    padding: 15px 35px;
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    background: linear-gradient(270deg, #ff0000, #ff4d4d, #ff0000);
+    background-size: 600% 600%;
+    border-radius: 50px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 0 15px rgba(255,0,0,0.7);
+    animation: pulse 1.5s infinite;
+    transition: transform 0.2s ease;
+}
+
+.subscribe-btn:hover {
+    transform: scale(1.08);
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 10px rgba(255,0,0,0.5); }
+    50% { box-shadow: 0 0 25px rgba(255,0,0,1); }
+    100% { box-shadow: 0 0 10px rgba(255,0,0,0.5); }
+}
+
+/* compteur */
+.compteur {
+    width: 260px;
+    height: 90px;
+    overflow: hidden;
+    border-radius: 10px;
+    background: #1e1e1e;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.compteur iframe {
+    width: 420px;
+    height: 120px;
+    border: none;
+    transform: translate(-5px, -10px) scale(1.05);
+    display: block;
+}
+
+/* mobile */
+@media (max-width: 600px) {
+    .subscribe-btn {
+        font-size: 16px;
+        padding: 12px 25px;
+    }
+
+    .profile h1 {
+        font-size: 22px;
+    }
+}
+
+footer {
+    margin-top: auto;
+    padding: 20px;
+    color: #777;
+    font-size: 14px;
+}
+
+body {
+    animation: fadeIn 1s ease;
+}
+    
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+</style>
+</head>
+
+<body>
+
+<nav class="navbar">
+    <a href="index.html">Accueil</a>
+    <a href="subscribe.html">S'abonner</a>
+    <a href="video.html">Vidéos</a>
+    <a href="a propos.html">À propos</a>
+    <a href="socials.html">Réseaux</a>
+</nav>
+
+<div class="profile">
+    <img src="8caad655-b47e-44da-b65c-c3bf5e8be028.png" alt="Photo de profil">
+    <p>Bienvenue sur ma chaîne YouTube 🔥</p>
+</div>
+
+<button class="subscribe-btn" id="btn">
+    🔔 S’abonner à la chaîne
+</button>
+
+<div class="compteur">
+    <iframe src="https://livecounts.org/compteur-youtube/UCmb4flfRx7I1F1U9bHd_y6A"></iframe>
+</div>
+
+<script>
+const btn = document.getElementById("btn");
+
+let subscribed = localStorage.getItem("subscribed") === "true";
+
+updateButton();
+
+btn.addEventListener("click", () => {
+
+    if (!subscribed) {
+        window.open(
+            "https://youtube.com/@salesman_gong_yoo_456?sub_confirmation=1",
+            "_blank"
+        );
+        subscribed = true;
+    } else {
+        subscribed = false;
+    }
+
+    localStorage.setItem("subscribed", subscribed);
+    updateButton();
+});
+
+function updateButton() {
+    if (subscribed) {
+        btn.textContent = "Abonné ✔";
+        btn.style.background = "linear-gradient(270deg, #00c853, #00e676, #00c853)";
+        btn.style.boxShadow = "0 0 25px rgba(0,255,100,0.8)";
+    } else {
+        btn.textContent = "🔔 S’abonner à la chaîne";
+        btn.style.background = "linear-gradient(270deg, #ff0000, #ff4d4d, #ff0000)";
+        btn.style.boxShadow = "0 0 15px rgba(255,0,0,0.7)";
+    }
+}
+</script>
+
+<footer>
+    © 2026 SUHOX_ - All rights reserved
+</footer>
+
+</body>
+</html>
