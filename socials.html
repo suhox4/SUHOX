@@ -1,146 +1,530 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Réseaux - SUHOX_</title>
-    <link rel="icon" href="8caad655-b47e-44da-b65c-c3bf5e8be028.png">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Réseaux - SUHOX_</title>
+
+<link rel="icon" href="8caad655-b47e-44da-b65c-c3bf5e8be028.png">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 <style>
+
+/* ===== BODY ===== */
+
 body {
+
     margin: 0;
+
+    padding-top: 100px;
+
     font-family: Arial, sans-serif;
-    background: #111;
+
     color: white;
-    animation: fadeIn 1s ease;
+
+    min-height: 100vh;
+
+    background: linear-gradient(
+        135deg,
+        #000000 0%,
+        #120000 30%,
+        #2a0000 55%,
+        #5c0000 80%,
+        #ff0000 100%
+    );
+
+    background-size: 400% 400%;
+
+    animation:
+    fadeIn 1s ease,
+    gradientMove 12s ease infinite;
+
+    overflow-x: hidden;
 }
 
-/* navbar */
-.navbar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background: #111;
-    padding: 15px 0;
-    display: flex;
-    justify-content: center;
-    gap: 40px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.5);
-    z-index: 1000;
-}
+/* ===== ANIMATIONS ===== */
 
-.navbar a {
-    color: white;
-    text-decoration: none;
-    font-size: 18px;
-    font-weight: bold;
-    transition: 0.3s;
-}
-
-.navbar a:hover {
-    color: red;
-}
-
-/* content */
-.container {
-    padding-top: 120px;
-    text-align: center;
-}
-
-.container h1 {
-    font-size: 45px;
-    margin-bottom: 15px;
-}
-
-.container p {
-    color: #aaa;
-    font-size: 18px;
-    margin-bottom: 40px;
-}
-
-/* social buttons */
-.social-links {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-}
-
-.social-links a {
-    width: 280px;
-    padding: 18px;
-    background: #1a1a1a;
-    border-radius: 15px;
-    text-decoration: none;
-    color: white;
-    font-size: 18px;
-    font-weight: bold;
-    box-shadow: 0 0 15px rgba(0,0,0,0.4);
-    transition: 0.3s ease;
-}
-
-.social-links a:hover {
-    transform: scale(1.05);
-    background: red;
-}
-
-/* footer */
-footer {
-    text-align: center;
-    padding: 30px;
-    margin-top: 60px;
-    color: #666;
-    border-top: 1px solid #222;
-}
-
-/* animation */
 @keyframes fadeIn {
+
     from {
         opacity: 0;
         transform: translateY(20px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
     }
+
 }
 
+@keyframes gradientMove {
+
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+
+}
+
+/* ===== NAVBAR ===== */
+
+.navbar {
+
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+
+    background: rgba(0,0,0,0.7);
+
+    backdrop-filter: blur(12px);
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 40px;
+
+    padding: 18px 0;
+
+    z-index: 9999;
+}
+
+.navbar a {
+
+    color: white;
+
+    text-decoration: none;
+
+    font-size: 18px;
+
+    font-weight: bold;
+
+    transition: 0.3s;
+}
+
+.navbar a:hover {
+
+    color: red;
+
+    transform: scale(1.08);
+}
+
+.navbar a.active {
+
+    color: red !important;
+}
+
+/* ===== HEADER ===== */
+
+.header {
+
+    text-align: center;
+
+    margin-bottom: 60px;
+}
+
+.header h1 {
+
+    font-size: 50px;
+
+    margin-bottom: 15px;
+}
+
+.header p {
+
+    color: #ccc;
+
+    font-size: 18px;
+}
+
+/* ===== SOCIAL GRID ===== */
+
+.social-grid {
+
+    display: flex;
+
+    justify-content: center;
+
+    flex-wrap: wrap;
+
+    gap: 35px;
+
+    padding: 20px;
+}
+
+/* ===== CARD ===== */
+
+.social-card {
+
+    width: 280px;
+
+    padding: 35px;
+
+    border-radius: 25px;
+
+    background: rgba(255,255,255,0.06);
+
+    backdrop-filter: blur(18px);
+
+    text-align: center;
+
+    box-shadow:
+        0 0 30px rgba(255,0,0,0.15);
+
+    transition: 0.3s;
+}
+
+.social-card:hover {
+
+    transform:
+        translateY(-10px)
+        scale(1.03);
+
+    box-shadow:
+        0 0 35px rgba(255,0,0,0.35);
+}
+
+/* ===== ICON ===== */
+
+.social-card i {
+
+    font-size: 70px;
+
+    margin-bottom: 25px;
+
+    color: red;
+
+    text-shadow:
+        0 0 20px red;
+}
+
+/* ===== TEXT ===== */
+
+.social-card h2 {
+
+    font-size: 30px;
+
+    margin-bottom: 15px;
+}
+
+.social-card p {
+
+    color: #ccc;
+
+    line-height: 1.7;
+
+    margin-bottom: 25px;
+}
+
+/* ===== BUTTON ===== */
+
+.social-btn {
+
+    display: inline-block;
+
+    padding: 14px 28px;
+
+    border-radius: 50px;
+
+    background:
+    linear-gradient(
+        270deg,
+        #ff0000,
+        #ff4d4d,
+        #ff0000
+    );
+
+    color: white;
+
+    text-decoration: none;
+
+    font-weight: bold;
+
+    transition: 0.3s;
+}
+
+.social-btn:hover {
+
+    transform: scale(1.08);
+
+    box-shadow:
+        0 0 20px red;
+}
+
+/* ===== FOOTER ===== */
+
+footer {
+
+    margin-top: 80px;
+
+    padding: 35px;
+
+    text-align: center;
+
+    color: rgba(255,255,255,0.7);
+}
+
+/* ===== RESPONSIVE ===== */
+
+@media (max-width: 768px) {
+
+    .navbar {
+
+        gap: 15px;
+
+        flex-wrap: wrap;
+    }
+
+    .navbar a {
+
+        font-size: 14px;
+    }
+
+    .header h1 {
+
+        font-size: 35px;
+    }
+
+    .social-card {
+
+        width: 85%;
+    }
+
+}
+
+#topBtn {
+
+    display: none;
+
+    position: fixed;
+
+    bottom: 25px;
+    right: 25px;
+
+    width: 50px;
+    height: 50px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: red;
+
+    color: white;
+
+    font-size: 22px;
+
+    cursor: pointer;
+
+    z-index: 9999;
+
+    transition: 0.3s;
+}
+
+#topBtn:hover {
+
+    transform: scale(1.1);
+
+    background: #ff2d2d;
+}
 </style>
 </head>
 
 <body>
 
+<button id="topBtn">↑</button>
+
+<script>
+
+const topBtn =
+document.getElementById("topBtn");
+
+window.onscroll = () => {
+
+    if(document.documentElement.scrollTop > 200){
+
+        topBtn.style.display = "block";
+
+    } else {
+
+        topBtn.style.display = "none";
+    }
+
+};
+
+topBtn.onclick = () => {
+
+    window.scrollTo({
+
+        top: 0,
+
+        behavior: "smooth"
+    });
+
+};
+
+</script>
+
+<!-- NAVBAR -->
+
 <nav class="navbar">
-    <a href="index.html">Accueil</a>
-    <a href="subscribe.html">S'abonner</a>
-    <a href="video.html">Vidéos</a>
-    <a href="a propos.html">À propos</a>
-    <a href="socials.html">Réseaux</a>
+
+    <a href="index.html">
+        Accueil
+    </a>
+
+    <a href="subscribe.html">
+        S'abonner
+    </a>
+
+    <a href="video.html">
+        Vidéos
+    </a>
+
+    <a href="a propos.html">
+        À propos
+    </a>
+
+    <a href="socials.html"
+    class="active">
+
+        Réseaux
+
+    </a>
+
 </nav>
 
-<div class="container">
-    <h1>Mes réseaux 🌐</h1>
-    <p>Retrouve-moi partout ici 👇</p>
+<!-- HEADER -->
 
-    <div class="social-links">
-    <a href="https://youtube.com/@ahn_su_ho_456?si=j1nglZpTYKzeW1Ap" target="_blank">
-    <i class="fa-brands fa-youtube"></i> YouTube
-</a>
+<div class="header">
 
-<a href="https://discord.gg/B5KHhd2cyT" target="_blank">
-    <i class="fa-brands fa-discord"></i> Discord
-</a>
+    <h1>Mes Réseaux 🔥</h1>
 
-<a href="https://www.twitch.tv/suhox_" target="_blank">
-    <i class="fa-brands fa-twitch"></i> Twitch
-</a>
+    <p>
+
+        Rejoins-moi sur toutes mes plateformes
+
+    </p>
+
 </div>
+
+<!-- SOCIALS -->
+
+<div class="social-grid">
+
+    <!-- YOUTUBE -->
+
+    <div class="social-card">
+
+        <i class="fa-brands fa-youtube"></i>
+
+        <h2>YouTube</h2>
+
+        <p>
+
+            Retrouve toutes mes vidéos gaming.
+
+        </p>
+
+        <a
+        class="social-btn"
+
+        href="https://youtube.com/@ahn_su_ho_456?si=rcXsrfE0qZXMWdkZ"
+
+        target="_blank">
+
+            Rejoindre
+
+        </a>
+
+    </div>
+
+    <!-- DISCORD -->
+
+    <div class="social-card">
+
+        <i class="fa-brands fa-discord"></i>
+
+        <h2>Discord</h2>
+
+        <p>
+
+            Rejoins la communauté et discute avec nous.
+
+        </p>
+
+        <a
+        class="social-btn"
+
+        href="https://discord.gg/B5KHhd2cyT"
+
+        target="_blank">
+
+            Rejoindre
+
+        </a>
+
+    </div>
+
+    <!-- TWITCH -->
+
+    <div class="social-card">
+
+        <i class="fa-brands fa-twitch"></i>
+
+        <h2>Twitch</h2>
+
+        <p>
+
+            Regarde mes lives et moments gaming.
+
+        </p>
+
+        <a
+        class="social-btn"
+
+        href="https://www.twitch.tv/suhox_"
+
+        target="_blank">
+
+            Rejoindre
+
+        </a>
+
+    </div>
+
 </div>
+
+<!-- FOOTER -->
 
 <footer>
-    © 2026 SUHOX_ - All rights reserved
+
+    <p>
+
+        © 2026 SUHOX_ - All rights reserved
+
+    </p>
+
+    <p>
+
+        Gaming • Fun • Community
+
+    </p>
+
 </footer>
 
 </body>

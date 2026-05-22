@@ -1,172 +1,533 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vidéos - SUHOX_</title>
-    <link rel="icon" href="8caad655-b47e-44da-b65c-c3bf5e8be028.png">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Vidéos - SUHOX_</title>
+
+<link rel="icon" href="8caad655-b47e-44da-b65c-c3bf5e8be028.png">
 
 <style>
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: #111;
-    color: white;
-}
 
-/* navbar */
-.navbar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background: #111;
-    padding: 15px 0;
-    display: flex;
-    justify-content: center;
-    gap: 40px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.5);
-    z-index: 1000;
-}
-
-.navbar a {
-    color: white;
-    text-decoration: none;
-    font-size: 18px;
-    font-weight: bold;
-    transition: 0.3s;
-}
-
-.navbar a:hover {
-    color: red;
-}
-
-/* content */
-.container {
-    padding-top: 120px;
-    text-align: center;
-}
-
-.container h1 {
-    font-size: 45px;
-    margin-bottom: 10px;
-}
-
-.container p {
-    color: #aaa;
-    font-size: 18px;
-    margin-bottom: 40px;
-}
-
-/* video cards */
-.video-grid {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 25px;
-    padding: 20px;
-}
-
-.video-card {
-    background: #1a1a1a;
-    border-radius: 15px;
-    overflow: hidden;
-    width: 320px;
-    box-shadow: 0 0 15px rgba(0,0,0,0.5);
-    transition: transform 0.3s ease;
-}
-
-.video-card:hover {
-    transform: scale(1.05);
-}
-
-.video-card img {
-    width: 100%;
-    display: block;
-}
-
-.video-card h3 {
-    padding: 15px;
-    margin: 0;
-    font-size: 20px;
-}
-
-.video-card a {
-    display: block;
-    padding: 15px;
-    background: red;
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-/* footer */
-footer {
-    text-align: center;
-    padding: 30px;
-    margin-top: 50px;
-    color: #666;
-    border-top: 1px solid #222;
-}
+/* ===== BODY ===== */
 
 body {
+
     margin: 0;
+
+    padding-top: 100px;
+
     font-family: Arial, sans-serif;
-    background: #111;
+
     color: white;
-    animation: fadeIn 1s ease;
+
+    min-height: 100vh;
+
+    background: linear-gradient(
+        135deg,
+        #000000 0%,
+        #120000 30%,
+        #2a0000 55%,
+        #5c0000 80%,
+        #ff0000 100%
+    );
+
+    background-size: 400% 400%;
+
+    animation:
+    fadeIn 1s ease,
+    gradientMove 12s ease infinite;
+
+    overflow-x: hidden;
 }
+
+/* ===== ANIMATIONS ===== */
 
 @keyframes fadeIn {
+
     from {
         opacity: 0;
         transform: translateY(20px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
     }
+
 }
 
+@keyframes gradientMove {
+
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+
+}
+
+/* ===== NAVBAR ===== */
+
+.navbar {
+
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+
+    background: rgba(0,0,0,0.7);
+
+    backdrop-filter: blur(12px);
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 40px;
+
+    padding: 18px 0;
+
+    z-index: 9999;
+}
+
+.navbar a {
+
+    color: white;
+
+    text-decoration: none;
+
+    font-size: 18px;
+
+    font-weight: bold;
+
+    transition: 0.3s;
+}
+
+.navbar a:hover {
+
+    color: red;
+
+    transform: scale(1.08);
+}
+
+.navbar a.active {
+
+    color: red !important;
+}
+
+/* ===== HEADER ===== */
+
+.header {
+
+    text-align: center;
+
+    margin-bottom: 60px;
+}
+
+.header h1 {
+
+    font-size: 50px;
+
+    margin-bottom: 15px;
+}
+
+.header p {
+
+    color: #ccc;
+
+    font-size: 18px;
+}
+
+/* ===== GRID ===== */
+
+.video-grid {
+
+    display: flex;
+
+    justify-content: center;
+
+    flex-wrap: wrap;
+
+    gap: 35px;
+
+    padding: 20px;
+}
+
+/* ===== CARDS ===== */
+
+.video-card {
+
+    width: 340px;
+
+    border-radius: 22px;
+
+    overflow: hidden;
+
+    background: rgba(255,255,255,0.06);
+
+    backdrop-filter: blur(18px);
+
+    box-shadow:
+        0 0 25px rgba(255,0,0,0.15);
+
+    transition: 0.3s;
+}
+
+.video-card:hover {
+
+    transform:
+        translateY(-10px)
+        scale(1.02);
+
+    box-shadow:
+        0 0 35px rgba(255,0,0,0.35);
+}
+
+/* ===== IMAGE ===== */
+
+.video-card img {
+
+    width: 100%;
+
+    display: block;
+}
+
+/* ===== CONTENT ===== */
+
+.video-content {
+
+    padding: 25px;
+
+    text-align: center;
+}
+
+.video-content h2 {
+
+    margin-bottom: 15px;
+
+    font-size: 26px;
+}
+
+.video-content p {
+
+    color: #ccc;
+
+    line-height: 1.7;
+
+    margin-bottom: 25px;
+}
+
+/* ===== BUTTON ===== */
+
+.video-btn {
+
+    display: inline-block;
+
+    padding: 14px 28px;
+
+    border-radius: 50px;
+
+    background:
+    linear-gradient(
+        270deg,
+        #ff0000,
+        #ff4d4d,
+        #ff0000
+    );
+
+    color: white;
+
+    text-decoration: none;
+
+    font-weight: bold;
+
+    transition: 0.3s;
+}
+
+.video-btn:hover {
+
+    transform: scale(1.08);
+
+    box-shadow:
+        0 0 20px red;
+}
+
+/* ===== FOOTER ===== */
+
+footer {
+
+    margin-top: 70px;
+
+    padding: 35px;
+
+    text-align: center;
+
+    color: rgba(255,255,255,0.7);
+}
+
+/* ===== RESPONSIVE ===== */
+
+@media (max-width: 768px) {
+
+    .navbar {
+
+        gap: 15px;
+
+        flex-wrap: wrap;
+    }
+
+    .navbar a {
+
+        font-size: 14px;
+    }
+
+    .header h1 {
+
+        font-size: 35px;
+    }
+
+    .video-card {
+
+        width: 90%;
+    }
+
+}
+
+#topBtn {
+
+    display: none;
+
+    position: fixed;
+
+    bottom: 25px;
+    right: 25px;
+
+    width: 50px;
+    height: 50px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: red;
+
+    color: white;
+
+    font-size: 22px;
+
+    cursor: pointer;
+
+    z-index: 9999;
+
+    transition: 0.3s;
+}
+
+#topBtn:hover {
+
+    transform: scale(1.1);
+
+    background: #ff2d2d;
+}
 </style>
 </head>
 
 <body>
 
+<button id="topBtn">↑</button>
+
+<script>
+
+const topBtn =
+document.getElementById("topBtn");
+
+window.onscroll = () => {
+
+    if(document.documentElement.scrollTop > 200){
+
+        topBtn.style.display = "block";
+
+    } else {
+
+        topBtn.style.display = "none";
+    }
+
+};
+
+topBtn.onclick = () => {
+
+    window.scrollTo({
+
+        top: 0,
+
+        behavior: "smooth"
+    });
+
+};
+
+</script>
+
+<!-- NAVBAR -->
+
 <nav class="navbar">
-    <a href="index.html">Accueil</a>
-    <a href="subscribe.html">S'abonner</a>
-    <a href="video.html">Vidéos</a>
-    <a href="a propos.html">À propos</a>
-    <a href="socials.html">Réseaux</a>
+
+    <a href="index.html">
+        Accueil
+    </a>
+
+    <a href="subscribe.html">
+        S'abonner
+    </a>
+
+    <a href="video.html"
+    class="active">
+
+        Vidéos
+
+    </a>
+
+    <a href="a propos.html">
+        À propos
+    </a>
+
+    <a href="socials.html">
+        Réseaux
+    </a>
+
 </nav>
 
-<div class="container">
-    <h1>Mes vidéos 🎮</h1>
-    <p>Découvre mes derniers contenus gaming</p>
+<!-- HEADER -->
 
-    <div class="video-grid">
+<div class="header">
 
-        <div class="video-card">
-            <h3>Ma dernière vidéo</h3>
-            <a href="https://youtu.be/ybVsAmIBSlc?si=9BGk4JvUrib5C5Wr" target="_blank">Regarder</a>
-        </div>
+    <h1>Mes Vidéos 🔥</h1>
 
-        <div class="video-card">
-            <h3>mon dernier post</h3>
-            <a href="http://youtube.com/post/Ugkxoy11jzZ_NQalghN7321vZUaHwM1Ph86F?si=-1S_bMYZOuuLH0AM" target="_blank">Regarder</a>
-        </div>
+    <p>
 
-        <div class="video-card">
-            <h3>mon dernier short</h3>
-            <a href="https://youtube.com/shorts/ZGewcyyk1TQ?si=HyMQ5O39H_kNP2yP" target="_blank">Regarder</a>
+        Retrouve tous mes contenus gaming
+
+    </p>
+
+</div>
+
+<!-- VIDEOS -->
+
+<div class="video-grid">
+
+    <!-- VIDEO 1 -->
+
+    <div class="video-card">
+
+        <div class="video-content">
+
+            <h2>Dernière Vidéo</h2>
+
+            <p>
+
+                Gameplay, fun et aventure gaming.
+
+            </p>
+
+            <a
+            class="video-btn"
+
+            href="https://youtu.be/ybVsAmIBSlc?si=4zurcG3dVF9BDQZh"
+
+            target="_blank">
+
+                ▶ Regarder
+
+            </a>
+
         </div>
 
     </div>
+
+    <!-- VIDEO 2 -->
+
+    <div class="video-card">
+
+        <div class="video-content">
+
+            <h2>Dernier short</h2>
+
+            <p>
+
+                mon dernier short gaming que j'ai sorti
+
+            </p>
+
+            <a
+            class="video-btn"
+
+            href="https://youtube.com/shorts/ZGewcyyk1TQ?si=TKrZA1IA7jQcSckX"
+
+            target="_blank">
+
+                ▶ Regarder
+
+            </a>
+
+        </div>
+
+    </div>
+
+    <!-- VIDEO 3 -->
+
+    <div class="video-card">
+
+        <div class="video-content">
+
+            <h2>dernier post</h2>
+
+            <p>
+
+                les dernière nouvelle de ma chaine.
+
+            </p>
+
+            <a
+            class="video-btn"
+
+            href="https://www.youtube.com/@ahn_su_ho_456/posts"
+
+            target="_blank">
+
+                ▶ Regarder
+
+            </a>
+
+        </div>
+
+    </div>
+
 </div>
 
+<!-- FOOTER -->
+
 <footer>
-    © 2026 SUHOX_ - All rights reserved
+
+    <p>
+
+        © 2026 SUHOX_ - All rights reserved
+
+    </p>
+
+    <p>
+
+        Gaming • Fun • Community
+
+    </p>
+
 </footer>
 
 </body>
