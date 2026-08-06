@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Mes Autres Jeux - SUHOX_</title>
+
+<link rel="icon" href="8caad655-b47e-44da-b65c-c3bf5e8be028.png">
+
+<style>
+
+/* ===== BODY ===== */
+
+body {
+
+    margin: 0;
+
+    padding-top: 100px;
+
+    font-family: Arial, sans-serif;
+
+    color: white;
+
+    min-height: 100vh;
+
+    background: linear-gradient(
+        135deg,
+        #000000 0%,
+        #120000 30%,
+        #2a0000 55%,
+        #5c0000 80%,
+        #ff0000 100%
+    );
+
+    background-size: 400% 400%;
+
+    animation:
+    fadeIn 1s ease,
+    gradientMove 12s ease infinite;
+
+    overflow-x: hidden;
+
+}
+
+
+/* ===== ANIMATIONS ===== */
+
+@keyframes fadeIn {
+
+    from {
+
+        opacity: 0;
+
+        transform: translateY(20px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform: translateY(0);
+
+    }
+
+}
+
+
+@keyframes gradientMove {
+
+    0% {
+
+        background-position: 0% 50%;
+
+    }
+
+    50% {
+
+        background-position: 100% 50%;
+
+    }
+
+    100% {
+
+        background-position: 0% 50%;
+
+    }
+
+}
+
+
+/* ===== NAVBAR ===== */
+
+.navbar {
+
+    position: fixed;
+
+    top: 0;
+
+    left: 0;
+
+    width: 100%;
+
+    background: rgba(0,0,0,0.7);
+
+    backdrop-filter: blur(12px);
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 40px;
+
+    padding: 18px 0;
+
+    z-index: 9999;
+
+}
+
+
+.navbar a {
+
+    color: white;
+
+    text-decoration: none;
+
+    font-size: 18px;
+
+    font-weight: bold;
+
+    transition: 0.3s;
+
+}
+
+
+.navbar a:hover {
+
+    color: red;
+
+    transform: scale(1.08);
+
+}
+
+
+.navbar a.active {
+
+    color: red !important;
+
+}
+
+
+/* ===== HEADER ===== */
+
+.header {
+
+    text-align: center;
+
+    margin-bottom: 60px;
+
+}
+
+
+.header h1 {
+
+    font-size: 50px;
+
+    margin-bottom: 15px;
+
+}
+
+
+.header p {
+
+    color: #ccc;
+
+    font-size: 18px;
+
+}
+
+
+/* ===== GRILLE DES JEUX ===== */
+
+.game-grid {
+
+    display: flex;
+
+    justify-content: center;
+
+    flex-wrap: wrap;
+
+    gap: 35px;
+
+    padding: 20px;
+
+}
+
+
+/* ===== CARTE JEU ===== */
+
+.game-card {
+
+    width: 340px;
+
+    padding: 30px;
+
+    box-sizing: border-box;
+
+    text-align: center;
+
+    border-radius: 22px;
+
+    background: rgba(255,255,255,0.06);
+
+    backdrop-filter: blur(18px);
+
+    box-shadow:
+
+        0 0 25px rgba(255,0,0,0.15);
+
+    transition: 0.3s;
+
+}
+
+
+.game-card:hover {
+
+    transform:
+
+        translateY(-10px)
+
+        scale(1.02);
+
+    box-shadow:
+
+        0 0 35px rgba(255,0,0,0.35);
+
+}
+
+
+.game-card h2 {
+
+    font-size: 27px;
+
+    margin-bottom: 15px;
+
+}
+
+
+.game-card p {
+
+    color: #ccc;
+
+    line-height: 1.6;
+
+    margin-bottom: 25px;
+
+}
+
+
+/* ===== INFORMATIONS ===== */
+
+.game-info {
+
+    margin-bottom: 20px;
+
+    padding: 12px;
+
+    border-radius: 15px;
+
+    background: rgba(0,0,0,0.25);
+
+}
+
+
+.game-info strong {
+
+    color: white;
+
+}
+
+
+/* ===== BOUTON ===== */
+
+.game-btn {
+
+    display: inline-block;
+
+    padding: 14px 28px;
+
+    border-radius: 50px;
+
+    background:
+
+    linear-gradient(
+
+        270deg,
+
+        #ff0000,
+
+        #ff4d4d,
+
+        #ff0000
+
+    );
+
+    color: white;
+
+    text-decoration: none;
+
+    font-weight: bold;
+
+    transition: 0.3s;
+
+}
+
+
+.game-btn:hover {
+
+    transform: scale(1.08);
+
+    box-shadow:
+
+        0 0 20px red;
+
+}
+
+
+/* ===== BOUTON RETOUR MES JEUX ===== */
+
+.back-button {
+
+    text-align: center;
+
+    margin-top: 50px;
+
+    margin-bottom: 20px;
+
+}
+
+
+/* ===== BOUTON RETOUR EN HAUT ===== */
+
+#topBtn {
+
+    display: none;
+
+    position: fixed;
+
+    bottom: 25px;
+
+    right: 25px;
+
+    width: 50px;
+
+    height: 50px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: red;
+
+    color: white;
+
+    font-size: 22px;
+
+    cursor: pointer;
+
+    z-index: 9999;
+
+    transition: 0.3s;
+
+}
+
+
+#topBtn:hover {
+
+    transform: scale(1.1);
+
+    background: #ff2d2d;
+
+}
+
+
+/* ===== FOOTER ===== */
+
+footer {
+
+    margin-top: 70px;
+
+    padding: 35px;
+
+    text-align: center;
+
+    color: rgba(255,255,255,0.7);
+
+}
+
+
+/* ===== RESPONSIVE ===== */
+
+@media (max-width: 768px) {
+
+    .navbar {
+
+        gap: 15px;
+
+        flex-wrap: wrap;
+
+    }
+
+
+    .navbar a {
+
+        font-size: 14px;
+
+    }
+
+
+    .header h1 {
+
+        font-size: 35px;
+
+    }
+
+
+    .game-card {
+
+        width: 90%;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- ===== BOUTON RETOUR EN HAUT ===== -->
+
+<button id="topBtn">↑</button>
+
+
+<!-- ===== NAVBAR ===== -->
+
+<nav class="navbar">
+
+    <a href="index.html">
+        Accueil
+    </a>
+
+    <a href="subscribe.html">
+        S'abonner
+    </a>
+
+    <a href="video.html">
+        Vidéos
+    </a>
+
+    <a href="a propos.html">
+        À propos
+    </a>
+
+    <a href="socials.html">
+        Réseaux
+    </a>
+
+    <a href="stats.html">
+        Stats
+    </a>
+
+    <a href="mes jeux.html" class="active">
+        Mes Jeux
+    </a>
+
+    <a href="platinums.html">
+        Platinums
+    </a>
+
+    <a href="livre d'or.html">
+        Livre d'or
+    </a>
+
+</nav>
+
+
+<!-- ===== HEADER ===== -->
+
+<div class="header">
+
+    <h1>
+        Mes Autres Jeux 🎮
+    </h1>
+
+    <p>
+        Découvre tous les autres jeux auxquels je joue ou que j'ai joués.
+    </p>
+
+</div>
+
+
+<!-- ===== JEUX ===== -->
+
+<div class="game-grid">
+
+    <!-- LEGO JURASSIC WORLD -->
+
+    <div class="game-card">
+
+        <h2>
+            LEGO Jurassic World
+        </h2>
+
+        <p>
+            Une aventure LEGO inspirée de l'univers Jurassic Park
+            avec de nombreux personnages et dinosaures.
+        </p>
+
+        <div class="game-info">
+
+            <strong>
+                Genre :
+            </strong>
+
+            Aventure
+
+        </div>
+
+        <div class="game-info">
+
+            <strong>
+                Plateforme :
+            </strong>
+
+            PlayStation
+
+        </div>
+
+        <a
+            href="https://www.lego.com/"
+            target="_blank"
+            class="game-btn">
+
+            Site officiel
+
+        </a>
+
+    </div>
+
+
+    <!-- ROBLOX -->
+
+    <div class="game-card">
+
+        <h2>
+            Roblox
+        </h2>
+
+        <p>
+            Une plateforme qui permet de découvrir énormément
+            de jeux et d'univers créés par la communauté.
+        </p>
+
+        <div class="game-info">
+
+            <strong>
+                Genre :
+            </strong>
+
+            Plateforme de jeux
+
+        </div>
+
+        <div class="game-info">
+
+            <strong>
+                Plateforme :
+            </strong>
+
+            PC / Mobile / Console
+
+        </div>
+
+        <a
+            href="https://www.roblox.com/"
+            target="_blank"
+            class="game-btn">
+
+            Site officiel
+
+        </a>
+
+    </div>
+
+
+    <!-- MY HERO ULTRA RUMBLE -->
+
+    <div class="game-card">
+
+        <h2>
+            My Hero Ultra Rumble
+        </h2>
+
+        <p>
+            Un jeu de combat en équipe inspiré de l'univers
+            de My Hero Academia.
+        </p>
+
+        <div class="game-info">
+
+            <strong>
+                Genre :
+            </strong>
+
+            Battle Royale / Combat
+
+        </div>
+
+        <div class="game-info">
+
+            <strong>
+                Plateforme :
+            </strong>
+
+            PlayStation
+
+        </div>
+
+        <a
+            href="https://en.bandainamcoent.eu/my-hero-academia/my-hero-ultra-rumble"
+            target="_blank"
+            class="game-btn">
+
+            Site officiel
+
+        </a>
+
+    </div>
+
+
+    <!-- LEGO MARVEL -->
+
+    <div class="game-card">
+
+        <h2>
+            LEGO Marvel
+        </h2>
+
+        <p>
+            Une aventure LEGO remplie de super-héros Marvel,
+            de combats et de nombreux personnages.
+        </p>
+
+        <div class="game-info">
+
+            <strong>
+                Genre :
+            </strong>
+
+            Action / Aventure
+
+        </div>
+
+        <div class="game-info">
+
+            <strong>
+                Plateforme :
+            </strong>
+
+            PlayStation
+
+        </div>
+
+        <a
+            href="https://www.lego.com/"
+            target="_blank"
+            class="game-btn">
+
+            Site officiel
+
+        </a>
+
+    </div>
+
+    <!-- CUPHEAD -->
+
+<div class="game-card">
+
+    <h2>
+        Cuphead
+    </h2>
+
+    <p>
+        Un jeu de plateforme et de combat au style cartoon,
+        connu pour ses combats de boss difficiles et son animation dessinée à la main.
+    </p>
+
+    <div class="game-info">
+
+        <strong>
+            Genre :
+        </strong>
+
+        Plateforme / Run and Gun
+
+    </div>
+
+    <div class="game-info">
+
+        <strong>
+            Plateforme :
+        </strong>
+
+        PlayStation / Xbox / PC / Nintendo Switch
+
+    </div>
+
+    <a
+        href="https://www.cupheadgame.com/"
+        target="_blank"
+        class="game-btn">
+
+        Site officiel
+
+    </a>
+
+</div>
+
+
+<!-- MINECRAFT -->
+
+<div class="game-card">
+
+    <h2>
+        Minecraft
+    </h2>
+
+    <p>
+        Un jeu de construction et d'aventure dans lequel tu peux
+        explorer un monde ouvert, construire et survivre.
+    </p>
+
+    <div class="game-info">
+
+        <strong>
+            Genre :
+        </strong>
+
+        Survie / Sandbox
+
+    </div>
+
+    <div class="game-info">
+
+        <strong>
+            Plateforme :
+        </strong>
+
+        PlayStation / Xbox / PC / Nintendo Switch / Mobile
+
+    </div>
+
+    <a
+        href="https://www.minecraft.net/"
+        target="_blank"
+        class="game-btn">
+
+        Site officiel
+
+    </a>
+
+</div>
+
+</div>
+
+
+<!-- ===== BOUTON RETOUR MES JEUX ===== -->
+
+<div class="back-button">
+
+    <a
+        href="mes jeux.html"
+        class="game-btn">
+
+        ← Retour à Mes Jeux
+
+    </a>
+
+</div>
+
+
+<!-- ===== FOOTER ===== -->
+
+<footer>
+
+    <p>
+        © 2026 SUHOX_ - All rights reserved
+    </p>
+
+    <p>
+        Gaming • Fun • Community
+    </p>
+
+</footer>
+
+
+<!-- ===== SCRIPT FLECHE ===== -->
+
+<script>
+
+const topBtn =
+document.getElementById("topBtn");
+
+
+window.onscroll = () => {
+
+    if (document.documentElement.scrollTop > 200) {
+
+        topBtn.style.display = "block";
+
+    } else {
+
+        topBtn.style.display = "none";
+
+    }
+
+};
+
+
+topBtn.onclick = () => {
+
+    window.scrollTo({
+
+        top: 0,
+
+        behavior: "smooth"
+
+    });
+
+};
+
+</script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,1486 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Livre d'or - SUHOX_</title>
+
+<link rel="icon" href="8caad655-b47e-44da-b65c-c3bf5e8be028.png">
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<style>
+
+body {
+    margin: 0;
+    padding-top: 100px;
+    font-family: Arial, sans-serif;
+    color: white;
+    min-height: 100vh;
+
+    background: linear-gradient(
+        135deg,
+        #000000 0%,
+        #120000 30%,
+        #2a0000 55%,
+        #5c0000 80%,
+        #ff0000 100%
+    );
+
+    background-size: 400% 400%;
+
+    animation:
+    fadeIn 1s ease,
+    gradientMove 12s ease infinite;
+
+    overflow-x: hidden;
+}
+
+@keyframes fadeIn {
+
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+@keyframes gradientMove {
+
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+
+}
+
+.navbar {
+
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+
+    background: rgba(0,0,0,0.7);
+
+    backdrop-filter: blur(12px);
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 40px;
+
+    padding: 18px 0;
+
+    z-index: 9999;
+
+}
+
+.navbar a {
+
+    color: white;
+
+    text-decoration: none;
+
+    font-size: 18px;
+
+    font-weight: bold;
+
+    transition: 0.3s;
+
+}
+
+.navbar a:hover {
+
+    color: red;
+
+    transform: scale(1.08);
+
+}
+
+.navbar a.active {
+
+    color: red !important;
+
+}
+
+.header {
+
+    text-align: center;
+
+    margin-bottom: 40px;
+
+    padding: 0 20px;
+
+}
+
+.header h1 {
+
+    font-size: 50px;
+
+    margin-bottom: 15px;
+
+}
+
+.header p {
+
+    color: #ccc;
+
+    font-size: 18px;
+
+}
+
+.guestbook-container {
+
+    width: 90%;
+
+    max-width: 700px;
+
+    margin: 0 auto;
+
+}
+
+.guestbook-form {
+
+    padding: 30px;
+
+    border-radius: 22px;
+
+    background: rgba(255,255,255,0.06);
+
+    backdrop-filter: blur(18px);
+
+    box-shadow:
+        0 0 25px rgba(255,0,0,0.15);
+
+    margin-bottom: 50px;
+
+}
+
+.guestbook-form h2 {
+
+    text-align: center;
+
+    margin-top: 0;
+
+    margin-bottom: 25px;
+
+}
+
+.guestbook-form input,
+.guestbook-form textarea {
+
+    width: 100%;
+
+    box-sizing: border-box;
+
+    padding: 15px;
+
+    margin-bottom: 15px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background: rgba(0,0,0,0.5);
+
+    color: white;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 16px;
+
+    outline: none;
+
+}
+
+.guestbook-form input:focus,
+.guestbook-form textarea:focus {
+
+    box-shadow:
+        0 0 10px rgba(255,0,0,0.5);
+
+}
+
+.guestbook-form textarea {
+
+    min-height: 130px;
+
+    resize: vertical;
+
+}
+
+.guestbook-form input::placeholder,
+.guestbook-form textarea::placeholder {
+
+    color: #aaa;
+
+}
+
+.game-btn {
+
+    display: block;
+
+    width: fit-content;
+
+    margin: 10px auto 0;
+
+    padding: 14px 28px;
+
+    border: none;
+
+    border-radius: 50px;
+
+    background:
+    linear-gradient(
+        270deg,
+        #ff0000,
+        #ff4d4d,
+        #ff0000
+    );
+
+    color: white;
+
+    text-decoration: none;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+
+}
+
+.game-btn:hover {
+
+    transform: scale(1.08);
+
+    box-shadow:
+        0 0 20px red;
+
+}
+
+.admin-zone {
+
+    padding: 25px;
+
+    margin-bottom: 50px;
+
+    border-radius: 22px;
+
+    background: rgba(255,255,255,0.06);
+
+    backdrop-filter: blur(18px);
+
+    box-shadow:
+        0 0 25px rgba(255,0,0,0.15);
+
+    text-align: center;
+
+}
+
+.admin-zone h2 {
+
+    margin-top: 0;
+
+}
+
+.admin-zone input {
+
+    width: 100%;
+
+    box-sizing: border-box;
+
+    padding: 15px;
+
+    margin-bottom: 15px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background: rgba(0,0,0,0.5);
+
+    color: white;
+
+    font-size: 16px;
+
+    outline: none;
+
+}
+
+.admin-zone button {
+
+    display: inline-block;
+
+    padding: 12px 25px;
+
+    margin: 5px;
+
+    border: none;
+
+    border-radius: 50px;
+
+    background: red;
+
+    color: white;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+
+}
+
+.admin-zone button:hover {
+
+    transform: scale(1.05);
+
+    box-shadow: 0 0 15px red;
+
+}
+
+#adminStatus {
+
+    color: #ccc;
+
+    margin-top: 15px;
+
+}
+
+.messages-title {
+
+    text-align: center;
+
+    margin-bottom: 30px;
+
+}
+
+.message-card {
+
+    padding: 25px;
+
+    margin-bottom: 20px;
+
+    border-radius: 20px;
+
+    background: rgba(255,255,255,0.06);
+
+    backdrop-filter: blur(18px);
+
+    box-shadow:
+        0 0 20px rgba(255,0,0,0.12);
+
+}
+
+.message-card h3 {
+
+    margin-top: 0;
+
+    margin-bottom: 10px;
+
+}
+
+.message-card p {
+
+    color: #ccc;
+
+    line-height: 1.6;
+
+    white-space: pre-wrap;
+
+    word-wrap: break-word;
+
+}
+
+.message-date {
+
+    color: #888;
+
+    font-size: 13px;
+
+    margin-top: 10px;
+
+}
+
+.delete-btn {
+
+    margin-top: 15px;
+
+    padding: 10px 20px;
+
+    border: none;
+
+    border-radius: 50px;
+
+    background: #800000;
+
+    color: white;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+
+}
+
+.delete-btn:hover {
+
+    background: red;
+
+    transform: scale(1.05);
+
+}
+
+.no-messages {
+
+    text-align: center;
+
+    color: #aaa;
+
+    padding: 30px;
+
+}
+
+#status {
+
+    text-align: center;
+
+    margin-top: 15px;
+
+    color: #ccc;
+
+}
+
+#topBtn {
+
+    display: none;
+
+    position: fixed;
+
+    bottom: 25px;
+
+    right: 25px;
+
+    width: 50px;
+
+    height: 50px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: red;
+
+    color: white;
+
+    font-size: 22px;
+
+    cursor: pointer;
+
+    z-index: 9999;
+
+    transition: 0.3s;
+
+}
+
+#topBtn:hover {
+
+    transform: scale(1.1);
+
+    background: #ff2d2d;
+
+}
+
+footer {
+
+    margin-top: 70px;
+
+    padding: 35px;
+
+    text-align: center;
+
+    color: rgba(255,255,255,0.7);
+
+}
+
+@media (max-width: 768px) {
+
+    .navbar {
+
+        gap: 15px;
+
+        flex-wrap: wrap;
+
+    }
+
+    .navbar a {
+
+        font-size: 14px;
+
+    }
+
+    .header h1 {
+
+        font-size: 35px;
+
+    }
+
+    .guestbook-form,
+    .admin-zone {
+
+        padding: 20px;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<button id="topBtn">↑</button>
+
+
+<nav class="navbar">
+
+    <a href="index.html">
+        Accueil
+    </a>
+
+    <a href="subscribe.html">
+        S'abonner
+    </a>
+
+    <a href="video.html">
+        Vidéos
+    </a>
+
+    <a href="a propos.html">
+        À propos
+    </a>
+
+    <a href="socials.html">
+        Réseaux
+    </a>
+
+    <a href="stats.html">
+        Stats
+    </a>
+
+    <a href="mes jeux.html">
+        Mes Jeux
+    </a>
+
+    <a href="platinums.html">
+        Platinums
+    </a>
+
+    <a href="livre d'or.html" class="active">
+        Livre d'or
+    </a>
+
+</nav>
+
+
+<div class="header">
+
+    <h1>
+        Livre d'or ✍️
+    </h1>
+
+    <p>
+        Laisse un message sur mon site et découvre les messages de la communauté !
+    </p>
+
+</div>
+
+
+<div class="guestbook-container">
+
+
+<div class="guestbook-form">
+
+    <h2>
+        Laisser un message
+    </h2>
+
+    <form id="guestbookForm">
+
+        <input
+            type="text"
+            id="pseudo"
+            placeholder="Ton pseudo"
+            maxlength="30"
+            required
+        >
+
+        <textarea
+            id="message"
+            placeholder="Écris ton message ici..."
+            maxlength="500"
+            required
+        ></textarea>
+
+        <button
+            type="submit"
+            class="game-btn">
+
+            Publier le message
+
+        </button>
+
+    </form>
+
+    <div id="status"></div>
+
+</div>
+
+
+<div class="admin-zone">
+
+    <h2>
+        🔐 Administration
+    </h2>
+
+    <div id="loginForm">
+
+        <input
+            type="email"
+            id="adminEmail"
+            placeholder="Adresse e-mail"
+        >
+
+        <input
+            type="password"
+            id="adminPassword"
+            placeholder="Mot de passe"
+        >
+
+        <button id="loginBtn">
+
+            Se connecter
+
+        </button>
+
+    </div>
+
+    <div id="adminLogged" style="display:none;">
+
+        <p>
+            ✅ Tu es connecté en administrateur.
+        </p>
+
+        <button id="logoutBtn">
+
+            Se déconnecter
+
+        </button>
+
+    </div>
+
+    <div id="adminStatus"></div>
+
+</div>
+
+
+<h2 class="messages-title">
+
+    Messages de la communauté 💬
+
+</h2>
+
+
+<div id="messages">
+
+    <div class="no-messages">
+
+        Chargement des messages...
+
+    </div>
+
+</div>
+
+
+</div>
+
+
+<footer>
+
+    <p>
+        © 2026 SUHOX_ - All rights reserved
+    </p>
+
+    <p>
+        Gaming • Fun • Community
+    </p>
+
+</footer>
+
+
+<script>
+
+/* =====================================================
+   CONFIGURATION SUPABASE
+===================================================== */
+
+const SUPABASE_URL =
+"https://xfufmbotgnzoinojrwlu.supabase.co";
+
+const SUPABASE_KEY =
+"sb_publishable_Yic1JgOXTwPsBk46JzGRFQ_h2hTvsmI";
+
+const supabaseClient =
+supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+);
+
+
+/* =====================================================
+   IDENTIFIANT ADMIN
+===================================================== */
+
+const ADMIN_ID =
+"66f3e823-858f-4287-b3a0-adb5dfb99cc1";
+
+
+/* =====================================================
+   ANALYTICS
+===================================================== */
+
+function getVisitorId() {
+
+    let visitorId =
+    localStorage.getItem(
+        "suhox_visitor_id"
+    );
+
+    if (!visitorId) {
+
+        visitorId =
+        crypto.randomUUID();
+
+        localStorage.setItem(
+            "suhox_visitor_id",
+            visitorId
+        );
+
+    }
+
+    return visitorId;
+
+}
+
+
+async function enregistrerVisite() {
+
+    try {
+
+        const visitorId =
+        getVisitorId();
+
+        const page =
+        window.location.pathname;
+
+        const { error } =
+        await supabaseClient
+        .from("analytics_visits")
+        .insert({
+
+            visitor_id:
+            visitorId,
+
+            page:
+            page
+
+        });
+
+        if (error) {
+
+            console.error(
+                "Erreur Analytics :",
+                error
+            );
+
+        }
+
+    } catch (error) {
+
+        console.error(
+            "Erreur Analytics :",
+            error
+        );
+
+    }
+
+}
+
+
+/* Enregistrer la visite */
+
+enregistrerVisite();
+
+
+/* =====================================================
+   ELEMENTS
+===================================================== */
+
+const form =
+document.getElementById(
+    "guestbookForm"
+);
+
+const pseudoInput =
+document.getElementById(
+    "pseudo"
+);
+
+const messageInput =
+document.getElementById(
+    "message"
+);
+
+const messagesContainer =
+document.getElementById(
+    "messages"
+);
+
+const status =
+document.getElementById(
+    "status"
+);
+
+const adminEmail =
+document.getElementById(
+    "adminEmail"
+);
+
+const adminPassword =
+document.getElementById(
+    "adminPassword"
+);
+
+const loginBtn =
+document.getElementById(
+    "loginBtn"
+);
+
+const logoutBtn =
+document.getElementById(
+    "logoutBtn"
+);
+
+const loginForm =
+document.getElementById(
+    "loginForm"
+);
+
+const adminLogged =
+document.getElementById(
+    "adminLogged"
+);
+
+const adminStatus =
+document.getElementById(
+    "adminStatus"
+);
+
+
+/* =====================================================
+   UTILISATEUR ACTUEL
+===================================================== */
+
+let currentUser = null;
+
+
+/* =====================================================
+   CHARGER LES MESSAGES
+===================================================== */
+
+async function loadMessages() {
+
+    messagesContainer.innerHTML = `
+
+        <div class="no-messages">
+
+            Chargement des messages...
+
+        </div>
+
+    `;
+
+
+    const {
+        data,
+        error
+    } =
+    await supabaseClient
+    .from("livre_or")
+    .select("*")
+    .order(
+        "created_at",
+        {
+            ascending: false
+        }
+    );
+
+
+    if (error) {
+
+        console.error(
+            "Erreur chargement messages :",
+            error
+        );
+
+        messagesContainer.innerHTML = `
+
+            <div class="no-messages">
+
+                Impossible de charger les messages.
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    if (
+        !data ||
+        data.length === 0
+    ) {
+
+        messagesContainer.innerHTML = `
+
+            <div class="no-messages">
+
+                Aucun message pour le moment.
+
+                Sois le premier à écrire !
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    messagesContainer.innerHTML = "";
+
+
+    data.forEach(
+        message => {
+
+            const card =
+            document.createElement(
+                "div"
+            );
+
+            card.className =
+            "message-card";
+
+
+            const title =
+            document.createElement(
+                "h3"
+            );
+
+            title.textContent =
+            message.pseudo;
+
+
+            const text =
+            document.createElement(
+                "p"
+            );
+
+            text.textContent =
+            message.message;
+
+
+            const date =
+            document.createElement(
+                "div"
+            );
+
+            date.className =
+            "message-date";
+
+
+            date.textContent =
+            new Date(
+                message.created_at
+            ).toLocaleString(
+                "fr-FR"
+            );
+
+
+            card.appendChild(
+                title
+            );
+
+            card.appendChild(
+                text
+            );
+
+            card.appendChild(
+                date
+            );
+
+
+            /* Bouton supprimer uniquement pour l'admin */
+
+            if (
+                currentUser &&
+                currentUser.id === ADMIN_ID
+            ) {
+
+                const deleteBtn =
+                document.createElement(
+                    "button"
+                );
+
+                deleteBtn.className =
+                "delete-btn";
+
+                deleteBtn.textContent =
+                "🗑️ Supprimer";
+
+
+                deleteBtn.onclick =
+                () => deleteMessage(
+                    message.id
+                );
+
+
+                card.appendChild(
+                    deleteBtn
+                );
+
+            }
+
+
+            messagesContainer.appendChild(
+                card
+            );
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   SUPPRIMER UN MESSAGE
+===================================================== */
+
+async function deleteMessage(id) {
+
+    const confirmation =
+    confirm(
+        "Voulez-vous vraiment supprimer ce message ?"
+    );
+
+
+    if (!confirmation) {
+
+        return;
+
+    }
+
+
+    const {
+        error
+    } =
+    await supabaseClient
+    .from("livre_or")
+    .delete()
+    .eq(
+        "id",
+        id
+    );
+
+
+    if (error) {
+
+        console.error(
+            "Erreur suppression :",
+            error
+        );
+
+        alert(
+            "Impossible de supprimer le message."
+        );
+
+        return;
+
+    }
+
+
+    await loadMessages();
+
+}
+
+
+/* =====================================================
+   PUBLIER UN MESSAGE
+===================================================== */
+
+form.addEventListener(
+    "submit",
+    async function(event) {
+
+        event.preventDefault();
+
+
+        const pseudo =
+        pseudoInput.value.trim();
+
+
+        const message =
+        messageInput.value.trim();
+
+
+        if (
+            !pseudo ||
+            !message
+        ) {
+
+            status.textContent =
+            "Veuillez remplir tous les champs.";
+
+            return;
+
+        }
+
+
+        status.textContent =
+        "Publication en cours...";
+
+
+        const {
+            error
+        } =
+        await supabaseClient
+        .from("livre_or")
+        .insert([
+
+            {
+
+                pseudo:
+                pseudo,
+
+                message:
+                message
+
+            }
+
+        ]);
+
+
+        if (error) {
+
+            console.error(
+                "Erreur publication :",
+                error
+            );
+
+            status.textContent =
+            "Erreur : "
+            +
+            error.message;
+
+            return;
+
+        }
+
+
+        status.textContent =
+        "Message publié avec succès !";
+
+
+        form.reset();
+
+
+        await loadMessages();
+
+
+        setTimeout(
+            () => {
+
+                status.textContent =
+                "";
+
+            },
+            3000
+        );
+
+    }
+);
+
+
+/* =====================================================
+   CONNEXION ADMIN
+===================================================== */
+
+loginBtn.onclick =
+async function() {
+
+    const email =
+    adminEmail.value.trim();
+
+
+    const password =
+    adminPassword.value;
+
+
+    if (
+        !email ||
+        !password
+    ) {
+
+        adminStatus.textContent =
+        "Entre ton e-mail et ton mot de passe.";
+
+        return;
+
+    }
+
+
+    adminStatus.textContent =
+    "Connexion en cours...";
+
+
+    const {
+        data,
+        error
+    } =
+    await supabaseClient
+    .auth
+    .signInWithPassword({
+
+        email:
+        email,
+
+        password:
+        password
+
+    });
+
+
+    if (error) {
+
+        console.error(
+            "Erreur connexion :",
+            error
+        );
+
+        adminStatus.textContent =
+        "E-mail ou mot de passe incorrect.";
+
+        return;
+
+    }
+
+
+    if (
+        !data.user ||
+        data.user.id !== ADMIN_ID
+    ) {
+
+        await supabaseClient
+        .auth
+        .signOut();
+
+        adminStatus.textContent =
+        "Ce compte n'est pas autorisé.";
+
+        return;
+
+    }
+
+
+    currentUser =
+    data.user;
+
+
+    loginForm.style.display =
+    "none";
+
+
+    adminLogged.style.display =
+    "block";
+
+
+    adminStatus.textContent =
+    "";
+
+
+    await loadMessages();
+
+};
+
+
+/* =====================================================
+   DECONNEXION
+===================================================== */
+
+logoutBtn.onclick =
+async function() {
+
+    await supabaseClient
+    .auth
+    .signOut();
+
+
+    currentUser =
+    null;
+
+
+    loginForm.style.display =
+    "block";
+
+
+    adminLogged.style.display =
+    "none";
+
+
+    adminEmail.value =
+    "";
+
+    adminPassword.value =
+    "";
+
+
+    await loadMessages();
+
+};
+
+
+/* =====================================================
+   VERIFIER LA SESSION
+===================================================== */
+
+async function checkSession() {
+
+    const {
+        data
+    } =
+    await supabaseClient
+    .auth
+    .getSession();
+
+
+    if (
+        data.session &&
+        data.session.user &&
+        data.session.user.id === ADMIN_ID
+    ) {
+
+        currentUser =
+        data.session.user;
+
+
+        loginForm.style.display =
+        "none";
+
+
+        adminLogged.style.display =
+        "block";
+
+    }
+
+
+    await loadMessages();
+
+}
+
+
+/* =====================================================
+   INITIALISATION
+===================================================== */
+
+checkSession();
+
+
+/* =====================================================
+   BOUTON RETOUR EN HAUT
+===================================================== */
+
+const topBtn =
+document.getElementById(
+    "topBtn"
+);
+
+
+window.onscroll =
+() => {
+
+    if (
+        document.documentElement.scrollTop > 200
+    ) {
+
+        topBtn.style.display =
+        "block";
+
+    } else {
+
+        topBtn.style.display =
+        "none";
+
+    }
+
+};
+
+
+topBtn.onclick =
+() => {
+
+    window.scrollTo({
+
+        top:
+        0,
+
+        behavior:
+        "smooth"
+
+    });
+
+};
+
+</script>
+
+
+</body>
+
+</html>

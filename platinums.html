@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Platinums - SUHOX_</title>
+
+<link rel="icon" href="8caad655-b47e-44da-b65c-c3bf5e8be028.png">
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<style>
+
+body {
+    margin: 0;
+    padding-top: 100px;
+    font-family: Arial, sans-serif;
+    color: white;
+    min-height: 100vh;
+
+    background: linear-gradient(
+        135deg,
+        #000000 0%,
+        #120000 30%,
+        #2a0000 55%,
+        #5c0000 80%,
+        #ff0000 100%
+    );
+
+    background-size: 400% 400%;
+
+    animation:
+        fadeIn 1s ease,
+        gradientMove 12s ease infinite;
+
+    overflow-x: hidden;
+}
+
+@keyframes fadeIn {
+
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+@keyframes gradientMove {
+
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+
+}
+
+.navbar {
+
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+
+    background: rgba(0,0,0,0.7);
+
+    backdrop-filter: blur(12px);
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 40px;
+
+    padding: 18px 0;
+
+    z-index: 9999;
+}
+
+.navbar a {
+
+    color: white;
+
+    text-decoration: none;
+
+    font-size: 18px;
+
+    font-weight: bold;
+
+    transition: 0.3s;
+}
+
+.navbar a:hover {
+
+    color: red;
+
+    transform: scale(1.08);
+}
+
+.navbar a.active {
+
+    color: red !important;
+}
+
+.header {
+
+    text-align: center;
+
+    margin-bottom: 60px;
+}
+
+.header h1 {
+
+    font-size: 50px;
+
+    margin-bottom: 15px;
+}
+
+.header p {
+
+    color: #ccc;
+
+    font-size: 18px;
+}
+
+.platinum-grid {
+
+    display: flex;
+
+    justify-content: center;
+
+    flex-wrap: wrap;
+
+    gap: 35px;
+
+    padding: 20px;
+}
+
+.platinum-card {
+
+    width: 340px;
+
+    padding: 30px;
+
+    box-sizing: border-box;
+
+    text-align: center;
+
+    border-radius: 22px;
+
+    background: rgba(255,255,255,0.06);
+
+    backdrop-filter: blur(18px);
+
+    box-shadow:
+        0 0 25px rgba(255,0,0,0.15);
+
+    transition: 0.3s;
+}
+
+.platinum-card:hover {
+
+    transform:
+        translateY(-10px)
+        scale(1.02);
+
+    box-shadow:
+        0 0 35px rgba(255,0,0,0.35);
+}
+
+.platinum-card h2 {
+
+    font-size: 27px;
+
+    margin-bottom: 15px;
+}
+
+.platinum-card p {
+
+    color: #ccc;
+
+    line-height: 1.6;
+}
+
+.progress-container {
+
+    width: 100%;
+
+    height: 14px;
+
+    margin-top: 20px;
+
+    background: rgba(0,0,0,0.5);
+
+    border-radius: 50px;
+
+    overflow: hidden;
+}
+
+.progress-fill {
+
+    height: 100%;
+
+    background:
+    linear-gradient(
+        90deg,
+        #ff0000,
+        #ff4d4d
+    );
+
+    border-radius: 50px;
+
+    box-shadow:
+        0 0 10px red;
+
+    transition:
+        width 0.5s ease;
+}
+
+.progress-text {
+
+    text-align: center;
+
+    margin-top: 10px;
+
+    color: #ccc;
+
+    font-size: 14px;
+}
+
+.platinum-obtained {
+
+    margin-top: 20px;
+
+    padding: 10px;
+
+    border-radius: 50px;
+
+    background:
+        rgba(255,0,0,0.2);
+
+    color: white;
+
+    font-weight: bold;
+}
+
+#loading {
+
+    text-align: center;
+
+    color: #ccc;
+
+    font-size: 18px;
+
+    padding: 50px;
+}
+
+#error {
+
+    display: none;
+
+    max-width: 700px;
+
+    margin: 30px auto;
+
+    padding: 20px;
+
+    box-sizing: border-box;
+
+    text-align: center;
+
+    color: white;
+
+    background:
+        rgba(255,0,0,0.15);
+
+    border-radius: 15px;
+}
+
+.update-info {
+
+    max-width: 800px;
+
+    margin: 70px auto 0;
+
+    padding: 35px;
+
+    box-sizing: border-box;
+
+    text-align: center;
+
+    border-radius: 22px;
+
+    background:
+        rgba(255,255,255,0.06);
+
+    backdrop-filter:
+        blur(18px);
+
+    box-shadow:
+        0 0 25px rgba(255,0,0,0.15);
+}
+
+.update-info h2 {
+
+    font-size: 24px;
+
+    margin-top: 15px;
+
+    margin-bottom: 10px;
+}
+
+.update-info h2:first-child {
+
+    margin-top: 0;
+}
+
+.update-info p {
+
+    color: #ccc;
+
+    line-height: 1.6;
+
+    margin-bottom: 25px;
+}
+
+.twitch-button {
+
+    display: inline-block;
+
+    padding: 14px 25px;
+
+    border-radius: 50px;
+
+    background: red;
+
+    color: white;
+
+    text-decoration: none;
+
+    font-weight: bold;
+
+    transition: 0.3s;
+}
+
+.twitch-button:hover {
+
+    transform:
+        scale(1.05);
+
+    background:
+        #ff2d2d;
+
+    box-shadow:
+        0 0 20px rgba(255,0,0,0.5);
+}
+
+#topBtn {
+
+    display: none;
+
+    position: fixed;
+
+    bottom: 25px;
+
+    right: 25px;
+
+    width: 50px;
+
+    height: 50px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: red;
+
+    color: white;
+
+    font-size: 22px;
+
+    cursor: pointer;
+
+    z-index: 9999;
+
+    transition: 0.3s;
+}
+
+#topBtn:hover {
+
+    transform:
+        scale(1.1);
+
+    background:
+        #ff2d2d;
+}
+
+footer {
+
+    margin-top: 70px;
+
+    padding: 35px;
+
+    text-align: center;
+
+    color:
+        rgba(255,255,255,0.7);
+}
+
+@media (max-width: 768px) {
+
+    .navbar {
+
+        gap: 15px;
+
+        flex-wrap: wrap;
+    }
+
+    .navbar a {
+
+        font-size: 14px;
+    }
+
+    .header h1 {
+
+        font-size: 35px;
+    }
+
+    .platinum-card {
+
+        width: 90%;
+    }
+
+    .update-info {
+
+        width: 90%;
+
+        padding:
+            25px 20px;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<button id="topBtn">
+    ↑
+</button>
+
+<nav class="navbar">
+
+<a href="index.html">
+    Accueil
+</a>
+
+<a href="subscribe.html">
+    S'abonner
+</a>
+
+<a href="video.html">
+    Vidéos
+</a>
+
+<a href="a propos.html">
+    À propos
+</a>
+
+<a href="socials.html">
+    Réseaux
+</a>
+
+<a href="stats.html">
+    Stats
+</a>
+
+<a href="mes jeux.html">
+    Mes Jeux
+</a>
+
+<a href="platinums.html" class="active">
+    Platinums
+</a>
+
+<a href="livre d'or.html">
+    Livre d'or
+</a>
+
+</nav>
+
+<div class="header">
+
+<h1>
+    Mes Platinums 🏆
+</h1>
+
+<p>
+    Découvre mes trophées Platine et ma progression.
+</p>
+
+</div>
+
+<div id="loading">
+
+Chargement de mes platines... ⏳
+
+</div>
+
+<div id="error"></div>
+
+<div
+    class="platinum-grid"
+    id="platinumGrid">
+
+</div>
+
+<div class="update-info">
+
+<h2>
+    📅 Mise à jour des pourcentages
+</h2>
+
+<p>
+    Les pourcentages d'avancement de mes platines sont mis à jour
+    <strong>toutes les semaines</strong>.
+</p>
+
+<h2>
+    🎥 Suivre mon avancée
+</h2>
+
+<p>
+    Pour suivre l'avancée de mes platines et mes sessions de chasse
+    aux trophées, retrouve-moi sur <strong>Twitch</strong> !
+</p>
+
+<a
+    href="https://www.twitch.tv/suhox_"
+    target="_blank"
+    rel="noopener noreferrer"
+    class="twitch-button">
+
+    🔴 Suivre mes platines sur Twitch
+
+</a>
+
+</div>
+
+<footer>
+
+<p>
+    © 2026 SUHOX_ - All rights reserved
+</p>
+
+<p>
+    Gaming • Fun • Community
+</p>
+
+</footer>
+
+<script>
+
+/* ===== SUPABASE ===== */
+
+const SUPABASE_URL =
+"https://xfufmbotgnzoinojrwlu.supabase.co";
+
+const SUPABASE_KEY =
+"sb_publishable_Yic1JgOXTwPsBk46JzGRFQ_h2hTvsmI";
+
+const supabaseClient =
+supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+);
+
+
+/* ===== CHARGER LES PLATINUMS ===== */
+
+async function chargerPlatinums() {
+
+    const loading =
+    document.getElementById(
+        "loading"
+    );
+
+    const grid =
+    document.getElementById(
+        "platinumGrid"
+    );
+
+    const errorBox =
+    document.getElementById(
+        "error"
+    );
+
+
+    const {
+        data,
+        error
+    } =
+    await supabaseClient
+    .from("platinums")
+    .select("*")
+    .order(
+        "id",
+        {
+            ascending: true
+        }
+    );
+
+
+    if (error) {
+
+        console.error(
+            "Erreur Supabase :",
+            error
+        );
+
+        loading.style.display =
+        "none";
+
+        errorBox.style.display =
+        "block";
+
+        errorBox.textContent =
+        "Erreur lors du chargement des platinums : "
+        + error.message;
+
+        return;
+
+    }
+
+
+    loading.style.display =
+    "none";
+
+
+    if (
+        !data ||
+        data.length === 0
+    ) {
+
+        errorBox.style.display =
+        "block";
+
+        errorBox.textContent =
+        "Aucun platinum n'a encore été ajouté.";
+
+        return;
+
+    }
+
+
+    grid.innerHTML =
+    "";
+
+
+    data.forEach(
+        platinum => {
+
+            const progression =
+            Math.max(
+                0,
+                Math.min(
+                    100,
+                    Number(
+                        platinum.progression
+                    ) || 0
+                )
+            );
+
+
+            const statut =
+            platinum.statut ||
+            "En cours";
+
+
+            const platineObtenu =
+            progression === 100 ||
+            statut
+            .toLowerCase()
+            .includes(
+                "obtenu"
+            );
+
+
+            const card =
+            document.createElement(
+                "div"
+            );
+
+            card.className =
+            "platinum-card";
+
+
+            card.innerHTML = `
+
+                <h2>
+                    ${escapeHTML(
+                        platinum.jeu
+                    )}
+                </h2>
+
+                <p>
+                    ${
+                        platineObtenu
+                        ? "🏆 Platine obtenu !"
+                        : "Progression du Platine"
+                    }
+                </p>
+
+                <div
+                    class="progress-container">
+
+                    <div
+                        class="progress-fill"
+                        style="
+                            width:
+                            ${progression}%;
+                        ">
+                    </div>
+
+                </div>
+
+                <p
+                    class="progress-text">
+
+                    ${progression} %
+                    —
+                    ${escapeHTML(
+                        statut
+                    )}
+
+                </p>
+
+                ${
+                    platineObtenu
+                    ? `
+
+                        <div
+                            class="platinum-obtained">
+
+                            🏆 PLATINE
+
+                        </div>
+
+                    `
+                    : ""
+                }
+
+            `;
+
+
+            grid.appendChild(
+                card
+            );
+
+        }
+    );
+
+}
+
+
+/* ===== SECURITE HTML ===== */
+
+function escapeHTML(text) {
+
+    const div =
+    document.createElement(
+        "div"
+    );
+
+    div.textContent =
+    text || "";
+
+    return div.innerHTML;
+
+}
+
+
+/* ===== BOUTON RETOUR EN HAUT ===== */
+
+const topBtn =
+document.getElementById(
+    "topBtn"
+);
+
+
+window.onscroll = () => {
+
+    if (
+        document.documentElement
+        .scrollTop > 200
+    ) {
+
+        topBtn.style.display =
+        "block";
+
+    } else {
+
+        topBtn.style.display =
+        "none";
+
+    }
+
+};
+
+
+topBtn.onclick = () => {
+
+    window.scrollTo({
+
+        top: 0,
+
+        behavior: "smooth"
+
+    });
+
+};
+
+
+/* ===== LANCEMENT ===== */
+
+chargerPlatinums();
+
+</script>
+
+</body>
+
+</html>

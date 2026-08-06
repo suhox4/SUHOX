@@ -1,6 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -8,20 +11,15 @@
 
 <link rel="icon" href="8caad655-b47e-44da-b65c-c3bf5e8be028.png">
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <style>
 
-/* ===== BODY ===== */
-
 body {
-
     margin: 0;
-
     padding-top: 100px;
-
     font-family: Arial, sans-serif;
-
     color: white;
-
     min-height: 100vh;
 
     background: linear-gradient(
@@ -41,8 +39,6 @@ body {
 
     overflow-x: hidden;
 }
-
-/* ===== ANIMATIONS ===== */
 
 @keyframes fadeIn {
 
@@ -73,8 +69,6 @@ body {
     }
 
 }
-
-/* ===== NAVBAR ===== */
 
 .navbar {
 
@@ -125,8 +119,6 @@ body {
     color: red !important;
 }
 
-/* ===== HEADER ===== */
-
 .header {
 
     text-align: center;
@@ -148,8 +140,6 @@ body {
     font-size: 18px;
 }
 
-/* ===== GRID ===== */
-
 .video-grid {
 
     display: flex;
@@ -162,8 +152,6 @@ body {
 
     padding: 20px;
 }
-
-/* ===== CARDS ===== */
 
 .video-card {
 
@@ -193,16 +181,12 @@ body {
         0 0 35px rgba(255,0,0,0.35);
 }
 
-/* ===== IMAGE ===== */
-
 .video-card img {
 
     width: 100%;
 
     display: block;
 }
-
-/* ===== CONTENT ===== */
 
 .video-content {
 
@@ -226,8 +210,6 @@ body {
 
     margin-bottom: 25px;
 }
-
-/* ===== BUTTON ===== */
 
 .video-btn {
 
@@ -262,8 +244,6 @@ body {
         0 0 20px red;
 }
 
-/* ===== FOOTER ===== */
-
 footer {
 
     margin-top: 70px;
@@ -274,8 +254,6 @@ footer {
 
     color: rgba(255,255,255,0.7);
 }
-
-/* ===== RESPONSIVE ===== */
 
 @media (max-width: 768px) {
 
@@ -338,27 +316,180 @@ footer {
 
     background: #ff2d2d;
 }
+
 </style>
+
 </head>
 
 <body>
 
 <button id="topBtn">↑</button>
 
+<nav class="navbar">
+
+<a href="index.html">
+    Accueil
+</a>
+
+<a href="subscribe.html">
+    S'abonner
+</a>
+
+<a href="video.html" class="active">
+    Vidéos
+</a>
+
+<a href="a propos.html">
+    À propos
+</a>
+
+<a href="socials.html">
+    Réseaux
+</a>
+
+<a href="stats.html">
+    Stats
+</a>
+
+<a href="mes jeux.html">
+    Mes Jeux
+</a>
+
+<a href="platinums.html">
+    Platinums
+</a>
+
+<a href="livre d'or.html">
+    Livre d'or
+</a>
+
+</nav>
+
+<div class="header">
+
+<h1>
+    Mes Vidéos 🔥
+</h1>
+
+<p>
+    Retrouve tous mes contenus gaming
+</p>
+
+</div>
+
+<div class="video-grid">
+
+<div class="video-card">
+
+    <div class="video-content">
+
+        <h2>
+            Dernière Vidéo
+        </h2>
+
+        <p>
+            Gameplay, fun et aventure gaming.
+        </p>
+
+        <a
+            class="video-btn"
+            href="https://youtu.be/ybVsAmIBSlc?si=4zurcG3dVF9BDQZh"
+            target="_blank"
+            rel="noopener noreferrer">
+
+            ▶ Regarder
+
+        </a>
+
+    </div>
+
+</div>
+
+<div class="video-card">
+
+    <div class="video-content">
+
+        <h2>
+            Dernier short
+        </h2>
+
+        <p>
+            Mon dernier short gaming que j'ai sorti.
+        </p>
+
+        <a
+            class="video-btn"
+            href="https://youtube.com/shorts/ZGewcyyk1TQ?si=TKrZA1IA7jQcSckX"
+            target="_blank"
+            rel="noopener noreferrer">
+
+            ▶ Regarder
+
+        </a>
+
+    </div>
+
+</div>
+
+<div class="video-card">
+
+    <div class="video-content">
+
+        <h2>
+            Dernier post
+        </h2>
+
+        <p>
+            Les dernières nouvelles de ma chaîne.
+        </p>
+
+        <a
+            class="video-btn"
+            href="https://www.youtube.com/@ahn_su_ho_456/posts"
+            target="_blank"
+            rel="noopener noreferrer">
+
+            ▶ Regarder
+
+        </a>
+
+    </div>
+
+</div>
+
+</div>
+
+<footer>
+
+<p>
+    © 2026 SUHOX_ - All rights reserved
+</p>
+
+<p>
+    Gaming • Fun • Community
+</p>
+
+</footer>
+
 <script>
+
+/* ===== BOUTON RETOUR EN HAUT ===== */
 
 const topBtn =
 document.getElementById("topBtn");
 
 window.onscroll = () => {
 
-    if(document.documentElement.scrollTop > 200){
+    if (
+        document.documentElement.scrollTop > 200
+    ) {
 
         topBtn.style.display = "block";
 
     } else {
 
         topBtn.style.display = "none";
+
     }
 
 };
@@ -370,165 +501,96 @@ topBtn.onclick = () => {
         top: 0,
 
         behavior: "smooth"
+
     });
 
 };
 
+
+/* ===== ANALYTICS SUHOX_ ===== */
+
+const SUPABASE_URL =
+"https://xfufmbotgnzoinojrwlu.supabase.co";
+
+const SUPABASE_KEY =
+"sb_publishable_Yic1JgOXTwPsBk46JzGRFQ_h2hTvsmI";
+
+const supabaseClient =
+supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+);
+
+
+/* Créer ou récupérer un identifiant anonyme */
+
+function getVisitorId() {
+
+    let visitorId =
+    localStorage.getItem(
+        "suhox_visitor_id"
+    );
+
+    if (!visitorId) {
+
+        visitorId =
+        crypto.randomUUID();
+
+        localStorage.setItem(
+            "suhox_visitor_id",
+            visitorId
+        );
+
+    }
+
+    return visitorId;
+
+}
+
+
+/* Enregistrer la visite */
+
+async function enregistrerVisite() {
+
+    const visitorId =
+    getVisitorId();
+
+    const page =
+    window.location.pathname;
+
+    const {
+        error
+    } =
+    await supabaseClient
+    .from("analytics_visits")
+    .insert({
+
+        visitor_id:
+        visitorId,
+
+        page:
+        page
+
+    });
+
+    if (error) {
+
+        console.error(
+            "Erreur Analytics :",
+            error
+        );
+
+    }
+
+}
+
+
+/* Lancer Analytics */
+
+enregistrerVisite();
+
 </script>
 
-<!-- NAVBAR -->
-
-<nav class="navbar">
-
-    <a href="index.html">
-        Accueil
-    </a>
-
-    <a href="subscribe.html">
-        S'abonner
-    </a>
-
-    <a href="video.html"
-    class="active">
-
-        Vidéos
-
-    </a>
-
-    <a href="a propos.html">
-        À propos
-    </a>
-
-    <a href="socials.html">
-        Réseaux
-    </a>
-
-</nav>
-
-<!-- HEADER -->
-
-<div class="header">
-
-    <h1>Mes Vidéos 🔥</h1>
-
-    <p>
-
-        Retrouve tous mes contenus gaming
-
-    </p>
-
-</div>
-
-<!-- VIDEOS -->
-
-<div class="video-grid">
-
-    <!-- VIDEO 1 -->
-
-    <div class="video-card">
-
-        <div class="video-content">
-
-            <h2>Dernière Vidéo</h2>
-
-            <p>
-
-                Gameplay, fun et aventure gaming.
-
-            </p>
-
-            <a
-            class="video-btn"
-
-            href="https://youtu.be/ybVsAmIBSlc?si=4zurcG3dVF9BDQZh"
-
-            target="_blank">
-
-                ▶ Regarder
-
-            </a>
-
-        </div>
-
-    </div>
-
-    <!-- VIDEO 2 -->
-
-    <div class="video-card">
-
-        <div class="video-content">
-
-            <h2>Dernier short</h2>
-
-            <p>
-
-                mon dernier short gaming que j'ai sorti
-
-            </p>
-
-            <a
-            class="video-btn"
-
-            href="https://youtube.com/shorts/ZGewcyyk1TQ?si=TKrZA1IA7jQcSckX"
-
-            target="_blank">
-
-                ▶ Regarder
-
-            </a>
-
-        </div>
-
-    </div>
-
-    <!-- VIDEO 3 -->
-
-    <div class="video-card">
-
-        <div class="video-content">
-
-            <h2>dernier post</h2>
-
-            <p>
-
-                les dernière nouvelle de ma chaine.
-
-            </p>
-
-            <a
-            class="video-btn"
-
-            href="https://www.youtube.com/@ahn_su_ho_456/posts"
-
-            target="_blank">
-
-                ▶ Regarder
-
-            </a>
-
-        </div>
-
-    </div>
-
-</div>
-
-<!-- FOOTER -->
-
-<footer>
-
-    <p>
-
-        © 2026 SUHOX_ - All rights reserved
-
-    </p>
-
-    <p>
-
-        Gaming • Fun • Community
-
-    </p>
-
-</footer>
-
 </body>
+
 </html>

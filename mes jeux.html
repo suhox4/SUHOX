@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Mes Jeux - SUHOX_</title>
+
+<link rel="icon" href="8caad655-b47e-44da-b65c-c3bf5e8be028.png">
+
+<style>
+
+/* ===== BODY ===== */
+
+body {
+
+    margin: 0;
+
+    padding-top: 100px;
+
+    font-family: Arial, sans-serif;
+
+    color: white;
+
+    min-height: 100vh;
+
+    background: linear-gradient(
+        135deg,
+        #000000 0%,
+        #120000 30%,
+        #2a0000 55%,
+        #5c0000 80%,
+        #ff0000 100%
+    );
+
+    background-size: 400% 400%;
+
+    animation:
+    fadeIn 1s ease,
+    gradientMove 12s ease infinite;
+
+    overflow-x: hidden;
+
+}
+
+
+/* ===== ANIMATIONS ===== */
+
+@keyframes fadeIn {
+
+    from {
+
+        opacity: 0;
+
+        transform: translateY(20px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform: translateY(0);
+
+    }
+
+}
+
+
+@keyframes gradientMove {
+
+    0% {
+
+        background-position: 0% 50%;
+
+    }
+
+    50% {
+
+        background-position: 100% 50%;
+
+    }
+
+    100% {
+
+        background-position: 0% 50%;
+
+    }
+
+}
+
+
+/* ===== NAVBAR ===== */
+
+.navbar {
+
+    position: fixed;
+
+    top: 0;
+
+    left: 0;
+
+    width: 100%;
+
+    background: rgba(0,0,0,0.7);
+
+    backdrop-filter: blur(12px);
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 40px;
+
+    padding: 18px 0;
+
+    z-index: 9999;
+
+}
+
+
+.navbar a {
+
+    color: white;
+
+    text-decoration: none;
+
+    font-size: 18px;
+
+    font-weight: bold;
+
+    transition: 0.3s;
+
+}
+
+
+.navbar a:hover {
+
+    color: red;
+
+    transform: scale(1.08);
+
+}
+
+
+.navbar a.active {
+
+    color: red !important;
+
+}
+
+
+/* ===== HEADER ===== */
+
+.header {
+
+    text-align: center;
+
+    margin-bottom: 60px;
+
+}
+
+
+.header h1 {
+
+    font-size: 50px;
+
+    margin-bottom: 15px;
+
+}
+
+
+.header p {
+
+    color: #ccc;
+
+    font-size: 18px;
+
+}
+
+
+/* ===== JEUX ===== */
+
+.game-grid {
+
+    display: flex;
+
+    justify-content: center;
+
+    flex-wrap: wrap;
+
+    gap: 35px;
+
+    padding: 20px;
+
+}
+
+
+/* ===== CARTE JEU ===== */
+
+.game-card {
+
+    width: 340px;
+
+    padding: 30px;
+
+    box-sizing: border-box;
+
+    text-align: center;
+
+    border-radius: 22px;
+
+    background: rgba(255,255,255,0.06);
+
+    backdrop-filter: blur(18px);
+
+    box-shadow:
+
+        0 0 25px rgba(255,0,0,0.15);
+
+    transition: 0.3s;
+
+}
+
+
+.game-card:hover {
+
+    transform:
+
+        translateY(-10px)
+
+        scale(1.02);
+
+    box-shadow:
+
+        0 0 35px rgba(255,0,0,0.35);
+
+}
+
+
+.game-card h2 {
+
+    font-size: 27px;
+
+    margin-bottom: 15px;
+
+}
+
+
+.game-card p {
+
+    color: #ccc;
+
+    line-height: 1.6;
+
+    margin-bottom: 25px;
+
+}
+
+
+/* ===== BOUTON SITE OFFICIEL ===== */
+
+.game-btn {
+
+    display: inline-block;
+
+    padding: 14px 28px;
+
+    border-radius: 50px;
+
+    background:
+
+    linear-gradient(
+
+        270deg,
+
+        #ff0000,
+
+        #ff4d4d,
+
+        #ff0000
+
+    );
+
+    color: white;
+
+    text-decoration: none;
+
+    font-weight: bold;
+
+    transition: 0.3s;
+
+}
+
+
+.game-btn:hover {
+
+    transform: scale(1.08);
+
+    box-shadow:
+
+        0 0 20px red;
+
+}
+
+
+/* ===== BOUTON AUTRES JEUX ===== */
+
+.other-games-button {
+
+    text-align: center;
+
+    margin-top: 50px;
+
+    margin-bottom: 20px;
+
+}
+
+
+/* ===== BOUTON RETOUR EN HAUT ===== */
+
+#topBtn {
+
+    display: none;
+
+    position: fixed;
+
+    bottom: 25px;
+
+    right: 25px;
+
+    width: 50px;
+
+    height: 50px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: red;
+
+    color: white;
+
+    font-size: 22px;
+
+    cursor: pointer;
+
+    z-index: 9999;
+
+    transition: 0.3s;
+
+}
+
+
+#topBtn:hover {
+
+    transform: scale(1.1);
+
+    background: #ff2d2d;
+
+}
+
+
+/* ===== FOOTER ===== */
+
+footer {
+
+    margin-top: 70px;
+
+    padding: 35px;
+
+    text-align: center;
+
+    color: rgba(255,255,255,0.7);
+
+}
+
+
+/* ===== RESPONSIVE ===== */
+
+@media (max-width: 768px) {
+
+    .navbar {
+
+        gap: 15px;
+
+        flex-wrap: wrap;
+
+    }
+
+
+    .navbar a {
+
+        font-size: 14px;
+
+    }
+
+
+    .header h1 {
+
+        font-size: 35px;
+
+    }
+
+
+    .game-card {
+
+        width: 90%;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- ===== BOUTON RETOUR EN HAUT ===== -->
+
+<button id="topBtn">↑</button>
+
+
+<!-- ===== NAVBAR ===== -->
+
+<nav class="navbar">
+
+    <a href="index.html">
+        Accueil
+    </a>
+
+    <a href="subscribe.html">
+        S'abonner
+    </a>
+
+    <a href="video.html">
+        Vidéos
+    </a>
+
+    <a href="a propos.html">
+        À propos
+    </a>
+
+    <a href="socials.html">
+        Réseaux
+    </a>
+
+    <a href="stats.html">
+        Stats
+    </a>
+
+    <a href="mes jeux.html" class="active">
+        Mes Jeux
+    </a>
+
+    <a href="platinums.html">
+        Platinums
+    </a>
+
+    <a href="livre d'or.html">
+        Livre d'or
+    </a>
+
+</nav>
+
+
+<!-- ===== HEADER ===== -->
+
+<div class="header">
+
+    <h1>
+        Mes Jeux 🎮
+    </h1>
+
+    <p>
+        Découvre les jeux auxquels je joue et mes jeux préférés.
+    </p>
+
+</div>
+
+
+<!-- ===== CARTES DES JEUX ===== -->
+
+<div class="game-grid">
+
+
+    <!-- SPIDER-MAN -->
+
+    <div class="game-card">
+
+        <h2>
+            Spider-Man
+        </h2>
+
+        <p>
+            Une aventure incroyable dans New York avec des combats,
+            de l'exploration et beaucoup d'action.
+        </p>
+
+        <a
+            class="game-btn"
+            href="https://www.playstation.com/fr-fr/games/marvels-spider-man/"
+            target="_blank"
+            rel="noopener noreferrer">
+
+            Site officiel
+
+        </a>
+
+    </div>
+
+
+    <!-- SPIDER-MAN MILES MORALES -->
+
+    <div class="game-card">
+
+        <h2>
+            Spider-Man: Miles Morales
+        </h2>
+
+        <p>
+            Une nouvelle aventure Spider-Man avec Miles Morales,
+            ses pouvoirs et de nouveaux combats.
+        </p>
+
+        <a
+            class="game-btn"
+            href="https://www.playstation.com/fr-fr/games/marvels-spider-man-miles-morales/"
+            target="_blank"
+            rel="noopener noreferrer">
+
+            Site officiel
+
+        </a>
+
+    </div>
+
+
+    <!-- UNCHARTED -->
+
+    <div class="game-card">
+
+        <h2>
+            Uncharted
+        </h2>
+
+        <p>
+            Une série d'aventure remplie d'action, d'exploration,
+            de combats et d'histoires passionnantes.
+        </p>
+
+        <a
+            class="game-btn"
+            href="https://www.playstation.com/fr-fr/uncharted/"
+            target="_blank"
+            rel="noopener noreferrer">
+
+            Site officiel
+
+        </a>
+
+    </div>
+
+
+    <!-- SIFU -->
+
+    <div class="game-card">
+
+        <h2>
+            Sifu
+        </h2>
+
+        <p>
+            Un jeu de combat exigeant basé sur les arts martiaux,
+            le Kung-Fu et la maîtrise des combats.
+        </p>
+
+        <a
+            class="game-btn"
+            href="https://www.sifugame.com/"
+            target="_blank"
+            rel="noopener noreferrer">
+
+            Site officiel
+
+        </a>
+
+    </div>
+
+
+    <!-- FORTNITE -->
+
+    <div class="game-card">
+
+        <h2>
+            Fortnite
+        </h2>
+
+        <p>
+            Un jeu que j'aime pour ses parties, ses événements,
+            ses skins et son univers en constante évolution.
+        </p>
+
+        <a
+            class="game-btn"
+            href="https://www.fortnite.com/"
+            target="_blank"
+            rel="noopener noreferrer">
+
+            Site officiel
+
+        </a>
+
+    </div>
+
+
+    <!-- ASSASSIN'S CREED ODYSSEY -->
+
+    <div class="game-card">
+
+        <h2>
+            Assassin's Creed Odyssey
+        </h2>
+
+        <p>
+            Une grande aventure en monde ouvert avec de l'exploration,
+            des combats et une immense histoire.
+        </p>
+
+        <a
+            class="game-btn"
+            href="https://www.ubisoft.com/fr-fr/game/assassins-creed/odyssey"
+            target="_blank"
+            rel="noopener noreferrer">
+
+            Site officiel
+
+        </a>
+
+    </div>
+
+
+</div>
+
+
+<!-- ===== BOUTON POUR VOIR TOUS LES AUTRES JEUX ===== -->
+
+<div class="other-games-button">
+
+    <a
+        href="autres-jeux.html"
+        class="game-btn">
+
+        🎮 Voir tous mes autres jeux
+
+    </a>
+
+</div>
+
+
+<!-- ===== FOOTER ===== -->
+
+<footer>
+
+    <p>
+        © 2026 SUHOX_ - All rights reserved
+    </p>
+
+    <p>
+        Gaming • Fun • Community
+    </p>
+
+</footer>
+
+
+<!-- ===== SUPABASE + ANALYTICS VISITEURS ===== -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+
+// ===== FLECHE RETOUR EN HAUT =====
+
+const topBtn =
+document.getElementById("topBtn");
+
+
+window.onscroll = () => {
+
+    if (document.documentElement.scrollTop > 200) {
+
+        topBtn.style.display =
+        "block";
+
+    } else {
+
+        topBtn.style.display =
+        "none";
+
+    }
+
+};
+
+
+topBtn.onclick = () => {
+
+    window.scrollTo({
+
+        top: 0,
+
+        behavior: "smooth"
+
+    });
+
+};
+
+
+// ===== CONFIGURATION SUPABASE =====
+
+const SUPABASE_URL =
+"https://xfufmbotgnzoinojrwlu.supabase.co";
+
+
+const SUPABASE_KEY =
+"sb_publishable_Yic1JgOXTwPsBk46JzGRFQ_h2hTvsmI";
+
+
+const supabaseClient =
+supabase.createClient(
+
+    SUPABASE_URL,
+
+    SUPABASE_KEY
+
+);
+
+
+// ===== CRÉER OU RÉCUPÉRER UN IDENTIFIANT ANONYME =====
+
+function getVisitorId() {
+
+    let visitorId =
+    localStorage.getItem(
+        "suhox_visitor_id"
+    );
+
+
+    if (!visitorId) {
+
+        visitorId =
+        crypto.randomUUID();
+
+
+        localStorage.setItem(
+
+            "suhox_visitor_id",
+
+            visitorId
+
+        );
+
+    }
+
+
+    return visitorId;
+
+}
+
+
+// ===== ENREGISTRER LA VISITE =====
+
+async function enregistrerVisite() {
+
+    const visitorId =
+    getVisitorId();
+
+
+    const page =
+    window.location.pathname;
+
+
+    const {
+
+        error
+
+    } = await supabaseClient
+
+    .from("analytics_visits")
+
+    .insert({
+
+        visitor_id:
+        visitorId,
+
+        page:
+        page
+
+    });
+
+
+    if (error) {
+
+        console.error(
+
+            "Erreur Analytics :",
+
+            error
+
+        );
+
+    }
+
+}
+
+
+// ===== LANCER LE SUIVI =====
+
+enregistrerVisite();
+
+</script>
+
+
+</body>
+
+</html>

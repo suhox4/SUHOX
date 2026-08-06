@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Stats - SUHOX_</title>
+
+<link rel="icon" href="8caad655-b47e-44da-b65c-c3bf5e8be028.png">
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<style>
+
+body {
+
+    margin: 0;
+
+    padding-top: 100px;
+
+    font-family: Arial, sans-serif;
+
+    color: white;
+
+    min-height: 100vh;
+
+    background: linear-gradient(
+        135deg,
+        #000000 0%,
+        #120000 30%,
+        #2a0000 55%,
+        #5c0000 80%,
+        #ff0000 100%
+    );
+
+    background-size: 400% 400%;
+
+    animation:
+    fadeIn 1s ease,
+    gradientMove 12s ease infinite;
+
+    overflow-x: hidden;
+}
+
+
+/* ===== ANIMATIONS ===== */
+
+@keyframes fadeIn {
+
+    from {
+
+        opacity: 0;
+
+        transform: translateY(20px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform: translateY(0);
+
+    }
+
+}
+
+
+@keyframes gradientMove {
+
+    0% {
+
+        background-position: 0% 50%;
+
+    }
+
+    50% {
+
+        background-position: 100% 50%;
+
+    }
+
+    100% {
+
+        background-position: 0% 50%;
+
+    }
+
+}
+
+
+/* ===== NAVBAR ===== */
+
+.navbar {
+
+    position: fixed;
+
+    top: 0;
+
+    left: 0;
+
+    width: 100%;
+
+    background: rgba(0,0,0,0.7);
+
+    backdrop-filter: blur(12px);
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 40px;
+
+    padding: 18px 0;
+
+    z-index: 9999;
+}
+
+
+.navbar a {
+
+    color: white;
+
+    text-decoration: none;
+
+    font-size: 18px;
+
+    font-weight: bold;
+
+    transition: 0.3s;
+}
+
+
+.navbar a:hover {
+
+    color: red;
+
+    transform: scale(1.08);
+
+}
+
+
+.navbar a.active {
+
+    color: red !important;
+
+}
+
+
+/* ===== HEADER ===== */
+
+.header {
+
+    text-align: center;
+
+    margin-bottom: 60px;
+
+}
+
+
+.header h1 {
+
+    font-size: 50px;
+
+    margin-bottom: 15px;
+
+}
+
+
+.header p {
+
+    color: #ccc;
+
+    font-size: 18px;
+
+}
+
+
+/* ===== STATS ===== */
+
+.stats-grid {
+
+    display: flex;
+
+    justify-content: center;
+
+    flex-wrap: wrap;
+
+    gap: 35px;
+
+    padding: 20px;
+
+}
+
+
+.stat-card {
+
+    width: 300px;
+
+    padding: 35px;
+
+    box-sizing: border-box;
+
+    text-align: center;
+
+    border-radius: 22px;
+
+    background: rgba(255,255,255,0.06);
+
+    backdrop-filter: blur(18px);
+
+    box-shadow:
+
+        0 0 25px rgba(255,0,0,0.15);
+
+    transition: 0.3s;
+
+}
+
+
+.stat-card:hover {
+
+    transform:
+
+        translateY(-10px)
+
+        scale(1.02);
+
+    box-shadow:
+
+        0 0 35px rgba(255,0,0,0.35);
+
+}
+
+
+.stat-card h2 {
+
+    font-size: 40px;
+
+    margin: 10px 0 15px;
+
+}
+
+
+.stat-card p {
+
+    color: #ccc;
+
+    font-size: 18px;
+
+}
+
+
+.stat-icon {
+
+    font-size: 45px;
+
+    margin-bottom: 10px;
+
+}
+
+
+/* ===== OBJECTIF ===== */
+
+.goal {
+
+    width: 90%;
+
+    max-width: 1000px;
+
+    margin: 35px auto;
+
+    padding: 30px;
+
+    box-sizing: border-box;
+
+    text-align: center;
+
+    border-radius: 22px;
+
+    background: rgba(255,255,255,0.06);
+
+    backdrop-filter: blur(18px);
+
+    box-shadow:
+
+        0 0 25px rgba(255,0,0,0.15);
+
+}
+
+
+.goal h2 {
+
+    font-size: 28px;
+
+    margin-bottom: 25px;
+
+}
+
+
+.progress-container {
+
+    width: 100%;
+
+    height: 20px;
+
+    background: rgba(0,0,0,0.5);
+
+    border-radius: 50px;
+
+    overflow: hidden;
+
+}
+
+
+.progress {
+
+    width: 76%;
+
+    height: 100%;
+
+    background:
+
+    linear-gradient(
+
+        270deg,
+
+        #ff0000,
+
+        #ff4d4d,
+
+        #ff0000
+
+    );
+
+    background-size: 200% 100%;
+
+    animation:
+
+    progressMove 3s linear infinite;
+
+    border-radius: 50px;
+
+    box-shadow:
+
+        0 0 20px red;
+
+}
+
+
+@keyframes progressMove {
+
+    0% {
+
+        background-position: 0% 50%;
+
+    }
+
+    100% {
+
+        background-position: 200% 50%;
+
+    }
+
+}
+
+
+.goal p {
+
+    color: #ccc;
+
+    margin-top: 15px;
+
+    font-size: 18px;
+
+}
+
+
+/* ===== BOUTON RETOUR EN HAUT ===== */
+
+#topBtn {
+
+    display: none;
+
+    position: fixed;
+
+    bottom: 25px;
+
+    right: 25px;
+
+    width: 50px;
+
+    height: 50px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: red;
+
+    color: white;
+
+    font-size: 22px;
+
+    cursor: pointer;
+
+    z-index: 9999;
+
+    transition: 0.3s;
+
+}
+
+
+#topBtn:hover {
+
+    transform: scale(1.1);
+
+    background: #ff2d2d;
+
+}
+
+
+/* ===== FOOTER ===== */
+
+footer {
+
+    margin-top: 70px;
+
+    padding: 35px;
+
+    text-align: center;
+
+    color: rgba(255,255,255,0.7);
+
+}
+
+
+/* ===== RESPONSIVE ===== */
+
+@media (max-width: 768px) {
+
+    .navbar {
+
+        gap: 15px;
+
+        flex-wrap: wrap;
+
+    }
+
+
+    .navbar a {
+
+        font-size: 14px;
+
+    }
+
+
+    .header h1 {
+
+        font-size: 35px;
+
+    }
+
+
+    .stat-card {
+
+        width: 90%;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- BOUTON RETOUR EN HAUT -->
+
+<button id="topBtn">↑</button>
+
+<!-- NAVBAR -->
+
+<nav class="navbar">
+
+<a href="index.html">
+    Accueil
+</a>
+
+<a href="subscribe.html">
+    S'abonner
+</a>
+
+<a href="video.html">
+    Vidéos
+</a>
+
+<a href="a propos.html">
+    À propos
+</a>
+
+<a href="socials.html">
+    Réseaux
+</a>
+
+<a href="stats.html" class="active">
+    Stats
+</a>
+
+<a href="mes jeux.html">
+    Mes Jeux
+</a>
+
+<a href="platinums.html">
+    Platinums
+</a>
+
+<a href="livre d'or.html">
+    Livre d'or
+</a>
+
+</nav>
+
+<!-- HEADER -->
+
+<div class="header">
+
+<h1>
+    Mes Statistiques 📊
+</h1>
+
+<p>
+    Découvre les statistiques de ma chaîne SUHOX_
+</p>
+
+</div>
+
+<!-- STATS -->
+
+<div class="stats-grid">
+
+<div class="stat-card">
+
+    <div class="stat-icon">
+        👤
+    </div>
+
+    <h2>
+        38
+    </h2>
+
+    <p>
+        Abonnés
+    </p>
+
+</div>
+
+
+<div class="stat-card">
+
+    <div class="stat-icon">
+        👁️
+    </div>
+
+    <h2>
+        39 316
+    </h2>
+
+    <p>
+        Vues totales
+    </p>
+
+</div>
+
+
+<div class="stat-card">
+
+    <div class="stat-icon">
+        🎬
+    </div>
+
+    <h2>
+        27
+    </h2>
+
+    <p>
+        Vidéos publiées
+    </p>
+
+</div>
+
+
+<div class="stat-card">
+
+    <div class="stat-icon">
+        ❤️
+    </div>
+
+    <h2>
+        334
+    </h2>
+
+    <p>
+        Likes
+    </p>
+
+</div>
+
+</div>
+
+<!-- OBJECTIF -->
+
+<div class="goal">
+
+<h2>
+    🎯 Objectif : 50 abonnés
+</h2>
+
+<div class="progress-container">
+
+    <div class="progress"></div>
+
+</div>
+
+<p>
+    38 / 50 abonnés — 76 %
+</p>
+
+</div>
+
+<!-- FOOTER -->
+
+<footer>
+
+<p>
+    © 2026 SUHOX_ - All rights reserved
+</p>
+
+<p>
+    Gaming • Fun • Community
+</p>
+```
+
+</footer>
+
+<!-- SCRIPT RETOUR EN HAUT -->
+
+<script>
+
+const topBtn =
+document.getElementById("topBtn");
+
+
+window.onscroll = () => {
+
+    if (
+        document.documentElement.scrollTop > 200
+    ) {
+
+        topBtn.style.display = "block";
+
+    } else {
+
+        topBtn.style.display = "none";
+
+    }
+
+};
+
+
+topBtn.onclick = () => {
+
+    window.scrollTo({
+
+        top: 0,
+
+        behavior: "smooth"
+
+    });
+
+};
+
+
+/* =====================================================
+   ANALYTICS SUHOX_
+   ===================================================== */
+
+const SUPABASE_URL =
+"https://xfufmbotgnzoinojrwlu.supabase.co";
+
+const SUPABASE_KEY =
+"sb_publishable_Yic1JgOXTwPsBk46JzGRFQ_h2hTvsmI";
+
+
+const supabaseClient =
+supabase.createClient(
+
+    SUPABASE_URL,
+
+    SUPABASE_KEY
+
+);
+
+
+/* ===== IDENTIFIANT VISITEUR ANONYME ===== */
+
+function getVisitorId() {
+
+    let visitorId =
+    localStorage.getItem(
+        "suhox_visitor_id"
+    );
+
+
+    if (!visitorId) {
+
+        visitorId =
+        crypto.randomUUID();
+
+
+        localStorage.setItem(
+
+            "suhox_visitor_id",
+
+            visitorId
+
+        );
+
+    }
+
+
+    return visitorId;
+
+}
+
+
+/* ===== ENREGISTRER LA VISITE ===== */
+
+async function enregistrerVisite() {
+
+    const visitorId =
+    getVisitorId();
+
+
+    const page =
+    window.location.pathname;
+
+
+    const {
+        error
+    } =
+    await supabaseClient
+
+    .from("analytics_visits")
+
+    .insert({
+
+        visitor_id:
+        visitorId,
+
+        page:
+        page
+
+    });
+
+
+    if (error) {
+
+        console.error(
+
+            "Erreur Analytics :",
+
+            error
+
+        );
+
+    }
+
+}
+
+
+/* ===== LANCER ANALYTICS ===== */
+
+enregistrerVisite();
+
+</script>
+
+</body>
+
+</html>

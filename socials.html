@@ -1,6 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -11,20 +14,15 @@
 <link rel="stylesheet"
 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <style>
 
-/* ===== BODY ===== */
-
 body {
-
     margin: 0;
-
     padding-top: 100px;
-
     font-family: Arial, sans-serif;
-
     color: white;
-
     min-height: 100vh;
 
     background: linear-gradient(
@@ -44,8 +42,6 @@ body {
 
     overflow-x: hidden;
 }
-
-/* ===== ANIMATIONS ===== */
 
 @keyframes fadeIn {
 
@@ -76,8 +72,6 @@ body {
     }
 
 }
-
-/* ===== NAVBAR ===== */
 
 .navbar {
 
@@ -128,8 +122,6 @@ body {
     color: red !important;
 }
 
-/* ===== HEADER ===== */
-
 .header {
 
     text-align: center;
@@ -151,8 +143,6 @@ body {
     font-size: 18px;
 }
 
-/* ===== SOCIAL GRID ===== */
-
 .social-grid {
 
     display: flex;
@@ -165,8 +155,6 @@ body {
 
     padding: 20px;
 }
-
-/* ===== CARD ===== */
 
 .social-card {
 
@@ -198,8 +186,6 @@ body {
         0 0 35px rgba(255,0,0,0.35);
 }
 
-/* ===== ICON ===== */
-
 .social-card i {
 
     font-size: 70px;
@@ -211,8 +197,6 @@ body {
     text-shadow:
         0 0 20px red;
 }
-
-/* ===== TEXT ===== */
 
 .social-card h2 {
 
@@ -229,8 +213,6 @@ body {
 
     margin-bottom: 25px;
 }
-
-/* ===== BUTTON ===== */
 
 .social-btn {
 
@@ -265,7 +247,29 @@ body {
         0 0 20px red;
 }
 
-/* ===== FOOTER ===== */
+#loading {
+
+    text-align: center;
+
+    color: #ccc;
+
+    font-size: 18px;
+
+    padding: 30px;
+}
+
+#error {
+
+    display: none;
+
+    text-align: center;
+
+    color: #ff7777;
+
+    font-size: 18px;
+
+    padding: 30px;
+}
 
 footer {
 
@@ -277,8 +281,6 @@ footer {
 
     color: rgba(255,255,255,0.7);
 }
-
-/* ===== RESPONSIVE ===== */
 
 @media (max-width: 768px) {
 
@@ -341,30 +343,358 @@ footer {
 
     background: #ff2d2d;
 }
+
 </style>
+
 </head>
 
 <body>
 
 <button id="topBtn">↑</button>
 
+<nav class="navbar">
+
+<a href="index.html">
+    Accueil
+</a>
+
+<a href="subscribe.html">
+    S'abonner
+</a>
+
+<a href="video.html">
+    Vidéos
+</a>
+
+<a href="a propos.html">
+    À propos
+</a>
+
+<a href="socials.html" class="active">
+    Réseaux
+</a>
+
+<a href="stats.html">
+    Stats
+</a>
+
+<a href="mes jeux.html">
+    Mes Jeux
+</a>
+
+<a href="platinums.html">
+    Platinums
+</a>
+
+<a href="livre d'or.html">
+    Livre d'or
+</a>
+
+</nav>
+
+<div class="header">
+
+<h1>
+    Mes Réseaux 🔥
+</h1>
+
+<p>
+    Rejoins-moi sur toutes mes plateformes
+</p>
+
+</div>
+
+<div id="loading">
+    Chargement des réseaux...
+</div>
+
+<div id="error">
+    Impossible de charger les réseaux.
+</div>
+
+<div
+    class="social-grid"
+    id="socialGrid">
+</div>
+
+<footer>
+
+<p>
+    © 2026 SUHOX_ - All rights reserved
+</p>
+
+<p>
+    Gaming • Fun • Community
+</p>
+
+</footer>
+
 <script>
 
+/* ===== SUPABASE ===== */
+
+const SUPABASE_URL =
+"https://xfufmbotgnzoinojrwlu.supabase.co";
+
+const SUPABASE_KEY =
+"sb_publishable_Yic1JgOXTwPsBk46JzGRFQ_h2hTvsmI";
+
+const supabaseClient =
+supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+);
+
+
+/* ===== ELEMENTS ===== */
+
+const socialGrid =
+document.getElementById(
+    "socialGrid"
+);
+
+const loading =
+document.getElementById(
+    "loading"
+);
+
+const errorMessage =
+document.getElementById(
+    "error"
+);
+
+
+/* ===== ICÔNES ===== */
+
+function getIcon(type) {
+
+    const icons = {
+
+        youtube:
+        "fa-brands fa-youtube",
+
+        discord:
+        "fa-brands fa-discord",
+
+        twitch:
+        "fa-brands fa-twitch",
+
+        instagram:
+        "fa-brands fa-instagram",
+
+        twitter:
+        "fa-brands fa-x-twitter",
+
+        tiktok:
+        "fa-brands fa-tiktok",
+
+        facebook:
+        "fa-brands fa-facebook"
+
+    };
+
+    return icons[type] ||
+    "fa-solid fa-link";
+
+}
+
+
+/* ===== CHARGER LES RÉSEAUX ===== */
+
+async function chargerReseaux() {
+
+    loading.style.display =
+    "block";
+
+    errorMessage.style.display =
+    "none";
+
+    socialGrid.innerHTML =
+    "";
+
+
+    const {
+        data,
+        error
+    } =
+    await supabaseClient
+    .from("socials")
+    .select("*")
+    .order(
+        "ordre",
+        {
+            ascending: true
+        }
+    );
+
+
+    if (error) {
+
+        console.error(
+            "Erreur Supabase :",
+            error
+        );
+
+        loading.style.display =
+        "none";
+
+        errorMessage.style.display =
+        "block";
+
+        return;
+
+    }
+
+
+    loading.style.display =
+    "none";
+
+
+    if (
+        !data ||
+        data.length === 0
+    ) {
+
+        errorMessage.textContent =
+        "Aucun réseau disponible.";
+
+        errorMessage.style.display =
+        "block";
+
+        return;
+
+    }
+
+
+    data.forEach(
+        reseau => {
+
+            const card =
+            document.createElement(
+                "div"
+            );
+
+            card.className =
+            "social-card";
+
+
+            const icon =
+            getIcon(
+                reseau.icone
+            );
+
+
+            card.innerHTML = `
+
+                <i class="${icon}"></i>
+
+                <h2>
+                    ${escapeHTML(
+                        reseau.nom
+                    )}
+                </h2>
+
+                <p>
+                    ${escapeHTML(
+                        reseau.description ||
+                        "Retrouve-moi sur cette plateforme."
+                    )}
+                </p>
+
+                <a
+                    class="social-btn"
+                    href="${escapeAttribute(
+                        reseau.url
+                    )}"
+                    target="_blank"
+                    rel="noopener noreferrer">
+
+                    Rejoindre
+
+                </a>
+
+            `;
+
+
+            socialGrid.appendChild(
+                card
+            );
+
+        }
+    );
+
+}
+
+
+/* ===== SECURITE HTML ===== */
+
+function escapeHTML(text) {
+
+    const div =
+    document.createElement(
+        "div"
+    );
+
+    div.textContent =
+    text || "";
+
+    return div.innerHTML;
+
+}
+
+
+function escapeAttribute(text) {
+
+    return String(
+        text || ""
+    )
+    .replace(
+        /&/g,
+        "&amp;"
+    )
+    .replace(
+        /"/g,
+        "&quot;"
+    )
+    .replace(
+        /</g,
+        "&lt;"
+    )
+    .replace(
+        />/g,
+        "&gt;"
+    );
+
+}
+
+
+/* ===== BOUTON RETOUR EN HAUT ===== */
+
 const topBtn =
-document.getElementById("topBtn");
+document.getElementById(
+    "topBtn"
+);
+
 
 window.onscroll = () => {
 
-    if(document.documentElement.scrollTop > 200){
+    if (
+        document.documentElement.scrollTop >
+        200
+    ) {
 
-        topBtn.style.display = "block";
+        topBtn.style.display =
+        "block";
 
     } else {
 
-        topBtn.style.display = "none";
+        topBtn.style.display =
+        "none";
+
     }
 
 };
+
 
 topBtn.onclick = () => {
 
@@ -373,159 +703,18 @@ topBtn.onclick = () => {
         top: 0,
 
         behavior: "smooth"
+
     });
 
 };
 
+
+/* ===== LANCEMENT ===== */
+
+chargerReseaux();
+
 </script>
 
-<!-- NAVBAR -->
-
-<nav class="navbar">
-
-    <a href="index.html">
-        Accueil
-    </a>
-
-    <a href="subscribe.html">
-        S'abonner
-    </a>
-
-    <a href="video.html">
-        Vidéos
-    </a>
-
-    <a href="a propos.html">
-        À propos
-    </a>
-
-    <a href="socials.html"
-    class="active">
-
-        Réseaux
-
-    </a>
-
-</nav>
-
-<!-- HEADER -->
-
-<div class="header">
-
-    <h1>Mes Réseaux 🔥</h1>
-
-    <p>
-
-        Rejoins-moi sur toutes mes plateformes
-
-    </p>
-
-</div>
-
-<!-- SOCIALS -->
-
-<div class="social-grid">
-
-    <!-- YOUTUBE -->
-
-    <div class="social-card">
-
-        <i class="fa-brands fa-youtube"></i>
-
-        <h2>YouTube</h2>
-
-        <p>
-
-            Retrouve toutes mes vidéos gaming.
-
-        </p>
-
-        <a
-        class="social-btn"
-
-        href="https://youtube.com/@ahn_su_ho_456?si=rcXsrfE0qZXMWdkZ"
-
-        target="_blank">
-
-            Rejoindre
-
-        </a>
-
-    </div>
-
-    <!-- DISCORD -->
-
-    <div class="social-card">
-
-        <i class="fa-brands fa-discord"></i>
-
-        <h2>Discord</h2>
-
-        <p>
-
-            Rejoins la communauté et discute avec nous.
-
-        </p>
-
-        <a
-        class="social-btn"
-
-        href="https://discord.gg/B5KHhd2cyT"
-
-        target="_blank">
-
-            Rejoindre
-
-        </a>
-
-    </div>
-
-    <!-- TWITCH -->
-
-    <div class="social-card">
-
-        <i class="fa-brands fa-twitch"></i>
-
-        <h2>Twitch</h2>
-
-        <p>
-
-            Regarde mes lives et moments gaming.
-
-        </p>
-
-        <a
-        class="social-btn"
-
-        href="https://www.twitch.tv/suhox_"
-
-        target="_blank">
-
-            Rejoindre
-
-        </a>
-
-    </div>
-
-</div>
-
-<!-- FOOTER -->
-
-<footer>
-
-    <p>
-
-        © 2026 SUHOX_ - All rights reserved
-
-    </p>
-
-    <p>
-
-        Gaming • Fun • Community
-
-    </p>
-
-</footer>
-
 </body>
+
 </html>

@@ -1,23 +1,18 @@
 <!DOCTYPE html>
+
 <html lang="fr">
+
 <head>
+
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>SUHOX_ - Gaming & Fun</title>
+<title>Accueil - SUHOX_</title>
 
 <link rel="icon" href="8caad655-b47e-44da-b65c-c3bf5e8be028.png">
 
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
 <style>
-
-/* ===== SCROLL ===== */
-
-html {
-    scroll-behavior: smooth;
-}
 
 /* ===== BODY ===== */
 
@@ -25,15 +20,13 @@ body {
 
     margin: 0;
 
+    padding-top: 100px;
+
     font-family: Arial, sans-serif;
 
     color: white;
 
     min-height: 100vh;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
 
     background: linear-gradient(
         135deg,
@@ -51,136 +44,55 @@ body {
     gradientMove 12s ease infinite;
 
     overflow-x: hidden;
+
 }
+
 
 /* ===== ANIMATIONS ===== */
 
 @keyframes fadeIn {
 
     from {
+
         opacity: 0;
+
         transform: translateY(20px);
+
     }
 
     to {
+
         opacity: 1;
+
         transform: translateY(0);
+
     }
 
 }
+
 
 @keyframes gradientMove {
 
     0% {
+
         background-position: 0% 50%;
+
     }
 
     50% {
+
         background-position: 100% 50%;
+
     }
 
     100% {
+
         background-position: 0% 50%;
+
     }
 
 }
 
-/* ===== LOADER ===== */
-
-#loader {
-
-    position: fixed;
-
-    top: 0;
-    left: 0;
-
-    width: 100%;
-    height: 100%;
-
-    background: black;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-    z-index: 999999;
-
-    animation:
-    fadeLoader 1s ease forwards;
-
-    animation-delay: 1.5s;
-}
-
-#loader h1 {
-
-    font-size: 70px;
-
-    color: red;
-
-    text-shadow:
-        0 0 10px red,
-        0 0 30px red;
-}
-
-#loader p {
-
-    color: white;
-
-    font-size: 20px;
-}
-
-@keyframes fadeLoader {
-
-    to {
-        opacity: 0;
-        visibility: hidden;
-    }
-
-}
-
-/* ===== PARTICULES ===== */
-
-#particles {
-
-    position: fixed;
-
-    top: 0;
-    left: 0;
-
-    width: 100%;
-    height: 100%;
-
-    pointer-events: none;
-
-    z-index: -1;
-}
-
-.particle {
-
-    position: absolute;
-
-    background: red;
-
-    border-radius: 50%;
-
-    opacity: 0.5;
-
-    animation:
-    particleMove linear infinite;
-}
-
-@keyframes particleMove {
-
-    from {
-        transform: translateY(100vh);
-    }
-
-    to {
-        transform: translateY(-100vh);
-    }
-
-}
 
 /* ===== NAVBAR ===== */
 
@@ -189,22 +101,27 @@ body {
     position: fixed;
 
     top: 0;
+
     left: 0;
 
     width: 100%;
 
-    padding: 18px 0;
-
-    background: rgba(0,0,0,0.65);
+    background: rgba(0,0,0,0.7);
 
     backdrop-filter: blur(12px);
 
     display: flex;
+
     justify-content: center;
+
     gap: 40px;
 
+    padding: 18px 0;
+
     z-index: 9999;
+
 }
+
 
 .navbar a {
 
@@ -213,331 +130,223 @@ body {
     text-decoration: none;
 
     font-size: 18px;
+
     font-weight: bold;
 
     transition: 0.3s;
+
 }
+
 
 .navbar a:hover {
 
     color: red;
 
-    transform: scale(1.1);
+    transform: scale(1.08);
+
 }
 
-.active {
+
+.navbar a.active {
+
     color: red !important;
+
 }
 
-/* ===== PROFILE ===== */
 
-.profile {
+/* ===== HERO ===== */
 
-    margin-top: 140px;
+.hero {
 
     text-align: center;
+
+    padding: 80px 20px 60px;
+
 }
 
-.profile img {
 
-    width: 140px;
-    height: 140px;
+.hero h1 {
 
-    border-radius: 50%;
+    font-size: 60px;
 
-    object-fit: cover;
+    margin-bottom: 20px;
 
-    border: 3px solid red;
-
-    box-shadow:
-        0 0 30px rgba(255,0,0,0.8);
-
-    transition: 0.3s;
 }
 
-.profile img:hover {
 
-    transform: scale(1.06);
-}
-
-.profile h1 {
-
-    margin-top: 20px;
-
-    font-size: 42px;
-
-    animation:
-    glowTitle 2s infinite alternate;
-}
-
-.profile p {
+.hero p {
 
     color: #ccc;
 
-    font-size: 18px;
-}
-
-/* ===== BUTTON ===== */
-
-.subscribe-btn {
-
-    margin-top: 35px;
-
-    padding: 16px 38px;
-
-    border: none;
-
-    border-radius: 50px;
-
     font-size: 20px;
-    font-weight: bold;
-
-    color: white;
-
-    cursor: pointer;
-
-    background:
-    linear-gradient(
-        270deg,
-        #ff0000,
-        #ff4d4d,
-        #ff0000
-    );
-
-    box-shadow:
-        0 0 25px rgba(255,0,0,0.8);
-
-    transition: 0.3s;
-
-    position: relative;
-
-    overflow: hidden;
-}
-
-.subscribe-btn:hover {
-
-    transform: scale(1.08);
-}
-
-.subscribe-btn::before {
-
-    content: "";
-
-    position: absolute;
-
-    top: 0;
-    left: -100%;
-
-    width: 100%;
-    height: 100%;
-
-    background:
-    linear-gradient(
-        120deg,
-        transparent,
-        rgba(255,255,255,0.5),
-        transparent
-    );
-
-    transition: 0.5s;
-}
-
-.subscribe-btn:hover::before {
-
-    left: 100%;
-}
-
-/* ===== COMPTEUR ===== */
-
-.compteur {
-
-    width: 280px;
-    height: 95px;
-
-    margin-top: 35px;
-
-    overflow: hidden;
-
-    border-radius: 15px;
-
-    background: rgba(255,255,255,0.05);
-
-    backdrop-filter: blur(10px);
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    box-shadow:
-        0 0 20px rgba(255,0,0,0.2);
-}
-
-.compteur iframe {
-
-    width: 420px;
-    height: 120px;
-
-    border: none;
-
-    transform:
-    translate(-5px,-10px)
-    scale(1.05);
-}
-
-/* ===== SECTION ===== */
-
-.section {
-
-    margin-top: 80px;
 
     max-width: 700px;
 
-    text-align: center;
+    margin: auto;
 
-    padding: 20px;
+    line-height: 1.6;
+
 }
 
-.section h2 {
 
-    font-size: 35px;
+/* ===== BOUTONS ===== */
 
-    margin-bottom: 20px;
+.buttons {
+
+    margin-top: 35px;
+
 }
 
-.section p {
 
-    color: #ccc;
+.btn {
 
-    line-height: 1.8;
+    display: inline-block;
 
-    font-size: 18px;
-}
+    padding: 15px 30px;
 
-/* ===== SOCIALS ===== */
+    margin: 10px;
 
-.socials {
+    border-radius: 50px;
 
-    margin-top: 30px;
+    background:
 
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-}
+    linear-gradient(
 
-.socials a {
+        270deg,
+
+        #ff0000,
+
+        #ff4d4d,
+
+        #ff0000
+
+    );
 
     color: white;
 
-    font-size: 40px;
-
-    transition: 0.3s;
-}
-
-.socials a:hover {
-
-    color: red;
-
-    transform:
-    translateY(-5px)
-    scale(1.2);
-}
-
-/* ===== NOTIFICATION ===== */
-
-#notif {
-
-    position: fixed;
-
-    top: 20px;
-    right: 20px;
-
-    background: rgba(0,0,0,0.85);
-
-    color: #00ff88;
-
-    padding: 15px 25px;
-
-    border-radius: 12px;
+    text-decoration: none;
 
     font-weight: bold;
 
-    opacity: 0;
+    transition: 0.3s;
 
-    transform: translateY(-20px);
-
-    transition: 0.4s;
-
-    z-index: 999999;
 }
 
-#notif.show {
 
-    opacity: 1;
+.btn:hover {
 
-    transform: translateY(0);
-}
-
-/* ===== SCROLL BAR ===== */
-
-#scrollBar {
-
-    position: fixed;
-
-    top: 0;
-    left: 0;
-
-    height: 4px;
-
-    width: 0%;
-
-    background: red;
-
-    z-index: 9999999;
+    transform: scale(1.08);
 
     box-shadow:
-        0 0 10px red;
+
+        0 0 20px red;
+
 }
+
+
+/* ===== CARTES ===== */
+
+.section {
+
+    padding: 50px 20px;
+
+    text-align: center;
+
+}
+
+
+.section h2 {
+
+    font-size: 40px;
+
+    margin-bottom: 40px;
+
+}
+
+
+.card-grid {
+
+    display: flex;
+
+    justify-content: center;
+
+    flex-wrap: wrap;
+
+    gap: 30px;
+
+}
+
+
+.card {
+
+    width: 280px;
+
+    padding: 30px;
+
+    border-radius: 22px;
+
+    background: rgba(255,255,255,0.06);
+
+    backdrop-filter: blur(18px);
+
+    box-shadow:
+
+        0 0 25px rgba(255,0,0,0.15);
+
+    transition: 0.3s;
+
+}
+
+
+.card:hover {
+
+    transform:
+
+        translateY(-10px)
+
+        scale(1.03);
+
+    box-shadow:
+
+        0 0 35px rgba(255,0,0,0.35);
+
+}
+
+
+.card h3 {
+
+    font-size: 25px;
+
+    margin-bottom: 15px;
+
+}
+
+
+.card p {
+
+    color: #ccc;
+
+    line-height: 1.6;
+
+}
+
 
 /* ===== FOOTER ===== */
 
 footer {
 
-    margin-top: auto;
+    margin-top: 70px;
 
     padding: 35px;
 
     text-align: center;
 
     color: rgba(255,255,255,0.7);
-}
-
-/* ===== RESPONSIVE ===== */
-
-@media (max-width: 768px) {
-
-    .navbar {
-
-        gap: 15px;
-
-        flex-wrap: wrap;
-    }
-
-    .navbar a {
-
-        font-size: 14px;
-    }
-
-    .profile h1 {
-
-        font-size: 30px;
-    }
-
-    .section {
-
-        width: 90%;
-    }
 
 }
+
+
+/* ===== RETOUR EN HAUT ===== */
 
 #topBtn {
 
@@ -546,9 +355,11 @@ footer {
     position: fixed;
 
     bottom: 25px;
+
     right: 25px;
 
     width: 50px;
+
     height: 50px;
 
     border: none;
@@ -566,38 +377,317 @@ footer {
     z-index: 9999;
 
     transition: 0.3s;
+
 }
+
 
 #topBtn:hover {
 
     transform: scale(1.1);
 
     background: #ff2d2d;
+
 }
+
+
+/* ===== RESPONSIVE ===== */
+
+@media (max-width: 768px) {
+
+    .navbar {
+
+        gap: 15px;
+
+        flex-wrap: wrap;
+
+    }
+
+
+    .navbar a {
+
+        font-size: 14px;
+
+    }
+
+
+    .hero h1 {
+
+        font-size: 40px;
+
+    }
+
+
+    .hero p {
+
+        font-size: 17px;
+
+    }
+
+
+    .card {
+
+        width: 85%;
+
+    }
+
+}
+
 </style>
+
 </head>
 
 <body>
 
+<!-- ===== BOUTON RETOUR EN HAUT ===== -->
+
 <button id="topBtn">↑</button>
 
+<!-- ===== NAVBAR ===== -->
+
+<nav class="navbar">
+
+<a href="index.html" class="active">
+    Accueil
+</a>
+
+<a href="subscribe.html">
+    S'abonner
+</a>
+
+<a href="video.html">
+    Vidéos
+</a>
+
+<a href="a propos.html">
+    À propos
+</a>
+
+<a href="socials.html">
+    Réseaux
+</a>
+
+<a href="stats.html">
+    Stats
+</a>
+
+<a href="mes jeux.html">
+    Mes Jeux
+</a>
+
+<a href="platinums.html">
+    Platinums
+</a>
+
+<a href="livre d'or.html">
+    Livre d'or
+</a>
+
+</nav>
+
+<!-- ===== HERO ===== -->
+
+<section class="hero">
+
+<h1>
+    Bienvenue sur SUHOX_ 🔥
+</h1>
+
+<p>
+
+    Bienvenue sur mon site officiel !
+    Retrouve ici mes vidéos, mes jeux préférés,
+    mes réseaux sociaux et toutes mes actualités gaming.
+
+</p>
+
+
+<div class="buttons">
+
+    <a
+        href="video.html"
+        class="btn">
+
+        🎥 Voir mes vidéos
+
+    </a>
+
+
+    <a
+        href="socials.html"
+        class="btn">
+
+        🔥 Mes réseaux
+
+    </a>
+
+</div>
+
+</section>
+
+<!-- ===== SECTION CONTENU ===== -->
+
+<section class="section">
+
+<h2>
+    Découvre mon univers 🎮
+</h2>
+
+
+<div class="card-grid">
+
+
+    <!-- VIDEOS -->
+
+    <div class="card">
+
+        <h3>
+            🎥 Mes Vidéos
+        </h3>
+
+        <p>
+
+            Découvre mes dernières vidéos
+            et mes contenus gaming.
+
+        </p>
+
+        <a
+            href="video.html"
+            class="btn">
+
+            Voir les vidéos
+
+        </a>
+
+    </div>
+
+
+    <!-- JEUX -->
+
+    <div class="card">
+
+        <h3>
+            🎮 Mes Jeux
+        </h3>
+
+        <p>
+
+            Découvre les jeux auxquels je joue
+            et mes jeux préférés.
+
+        </p>
+
+        <a
+            href="mes jeux.html"
+            class="btn">
+
+            Voir mes jeux
+
+        </a>
+
+    </div>
+
+
+    <!-- PLATINUMS -->
+
+    <div class="card">
+
+        <h3>
+            🏆 Mes Platinums
+        </h3>
+
+        <p>
+
+            Suis ma progression dans mes jeux
+            et mes trophées Platine.
+
+        </p>
+
+        <a
+            href="platinums.html"
+            class="btn">
+
+            Voir mes Platinums
+
+        </a>
+
+    </div>
+
+
+    <!-- RESEAUX -->
+
+    <div class="card">
+
+        <h3>
+            🔥 Mes Réseaux
+        </h3>
+
+        <p>
+
+            Retrouve-moi sur YouTube,
+            Twitch et Discord.
+
+        </p>
+
+        <a
+            href="socials.html"
+            class="btn">
+
+            Mes réseaux
+
+        </a>
+
+    </div>
+
+
+</div>
+
+</section>
+
+<!-- ===== FOOTER ===== -->
+
+<footer>
+
+<p>
+    © 2026 SUHOX_ - All rights reserved
+</p>
+
+<p>
+    Gaming • Fun • Community
+</p>
+
+</footer>
+
+<!-- ===== SUPABASE + ANALYTICS VISITEURS ===== -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <script>
+
+// ===== FLECHE RETOUR EN HAUT =====
 
 const topBtn =
 document.getElementById("topBtn");
 
+
 window.onscroll = () => {
 
-    if(document.documentElement.scrollTop > 200){
+    if (
+        document.documentElement.scrollTop > 200
+    ) {
 
-        topBtn.style.display = "block";
+        topBtn.style.display =
+        "block";
 
     } else {
 
-        topBtn.style.display = "none";
+        topBtn.style.display =
+        "none";
+
     }
 
 };
+
 
 topBtn.onclick = () => {
 
@@ -606,218 +696,116 @@ topBtn.onclick = () => {
         top: 0,
 
         behavior: "smooth"
+
     });
 
 };
 
-</script>    
 
-<!-- loader -->
+// ===== CONFIGURATION SUPABASE =====
 
-<div id="loader">
+const SUPABASE_URL =
+"https://xfufmbotgnzoinojrwlu.supabase.co";
 
-    <h1>SUHOX_</h1>
 
-    <p>Loading...</p>
+const SUPABASE_KEY =
+"sb_publishable_Yic1JgOXTwPsBk46JzGRFQ_h2hTvsmI";
 
-</div>
 
-<!-- particules -->
+const supabaseClient =
+supabase.createClient(
 
-<div id="particles"></div>
+    SUPABASE_URL,
 
-<!-- barre -->
+    SUPABASE_KEY
 
-<div id="scrollBar"></div>
+);
 
-<!-- notification -->
 
-<div id="notif">
+// ===== IDENTIFIANT ANONYME DU VISITEUR =====
 
-✔ Merci pour l’abonnement !
+function getVisitorId() {
 
-</div>
+    let visitorId =
+    localStorage.getItem(
+        "suhox_visitor_id"
+    );
 
-<!-- navbar -->
 
-<nav class="navbar">
+    if (!visitorId) {
 
-    <a href="index.html"
-    class="active">
+        visitorId =
+        crypto.randomUUID();
 
-        Accueil
 
-    </a>
+        localStorage.setItem(
 
-    <a href="subscribe.html">
+            "suhox_visitor_id",
 
-        S'abonner
+            visitorId
 
-    </a>
+        );
 
-    <a href="video.html">
+    }
 
-        Vidéos
 
-    </a>
+    return visitorId;
 
-    <a href="a propos.html">
-
-        À propos
-
-    </a>
-
-    <a href="socials.html">
-
-        Réseaux
-
-    </a>
-
-</nav>
-
-<!-- profil -->
-
-<div class="profile">
-
-    <img
-    src="8caad655-b47e-44da-b65c-c3bf5e8be028.png"
-    alt="profil">
-
-    <h1>SUHOX_</h1>
-
-    <p>
-
-        Bienvenue sur ma chaîne YouTube 🔥
-
-    </p>
-
-</div>
-
-<!-- bouton -->
-
-<a href="subscribe.html">
-
-    <button class="subscribe-btn">
-
-        🔔 S’abonner à la chaîne
-
-    </button>
-
-</a>
-
-
-<!-- compteur -->
-
-<div class="compteur">
-
-    <iframe
-    src="https://livecounts.org/compteur-youtube/UCmb4flfRx7I1F1U9bHd_y6A">
-    </iframe>
-
-</div>
-
-<!-- section -->
-
-<div class="section">
-
-    <h2>Qui suis-je ?</h2>
-
-    <p>
-
-        Créateur de contenu gaming passionné.
-        Je partage gameplay, fun,
-        défis et divertissement.
-
-    </p>
-
-</div>
-
-<!-- réseaux -->
-
-<div class="socials">
-
-    <a href="https://youtube.com/@ahn_su_ho_456?si=rcXsrfE0qZXMWdkZ"
-    target="_blank">
-
-        <i class="fa-brands fa-youtube"></i>
-
-    </a>
-
-    <a href="https://discord.gg/B5KHhd2cyT"
-    target="_blank">
-
-        <i class="fa-brands fa-discord"></i>
-
-    </a>
-
-    <a href="https://www.twitch.tv/suhox_"
-    target="_blank">
-
-        <i class="fa-brands fa-twitch"></i>
-
-    </a>
-
-</div>
-
-<!-- footer -->
-
-<footer>
-
-    <p>
-
-        © 2026 SUHOX_ - All rights reserved
-
-    </p>
-
-    <p>
-
-        Gaming • Fun • Community
-
-    </p>
-
-</footer>
-
-<!-- son -->
-
-<audio id="clickSound">
-
-<source
-src="click.mp3"
-type="audio/mpeg">
-
-</audio>
-
-<script>
-
-/* ===== PARTICULES ===== */
-
-const particles =
-document.getElementById("particles");
-
-for(let i = 0; i < 70; i++){
-
-    const particle =
-    document.createElement("div");
-
-    particle.classList.add("particle");
-
-    particle.style.left =
-    Math.random()*100 + "%";
-
-    particle.style.width =
-    particle.style.height =
-    Math.random()*5 + 2 + "px";
-
-    particle.style.animationDuration =
-    5 + Math.random()*10 + "s";
-
-    particle.style.opacity =
-    Math.random();
-
-    particles.appendChild(particle);
 }
+
+
+// ===== ENREGISTRER LA VISITE =====
+
+async function enregistrerVisite() {
+
+    const visitorId =
+    getVisitorId();
+
+
+    const page =
+    window.location.pathname;
+
+
+    const {
+
+        error
+
+    } = await supabaseClient
+
+    .from("analytics_visits")
+
+    .insert({
+
+        visitor_id:
+        visitorId,
+
+        page:
+        page
+
+    });
+
+
+    if (error) {
+
+        console.error(
+
+            "Erreur Analytics :",
+
+            error
+
+        );
+
+    }
+
+}
+
+
+// ===== LANCER LE SUIVI =====
+
+enregistrerVisite();
 
 </script>
 
 </body>
+
 </html>

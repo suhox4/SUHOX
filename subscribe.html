@@ -8,28 +8,16 @@
 
 <link rel="icon" href="8caad655-b47e-44da-b65c-c3bf5e8be028.png">
 
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
 <style>
 
-/* ===== BODY ===== */
+body{
+    margin:0;
+    padding-top:100px;
+    font-family:Arial,sans-serif;
+    color:white;
+    min-height:100vh;
 
-body {
-
-    margin: 0;
-
-    font-family: Arial, sans-serif;
-
-    color: white;
-
-    min-height: 100vh;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    background: linear-gradient(
+    background:linear-gradient(
         135deg,
         #000000 0%,
         #120000 30%,
@@ -38,517 +26,256 @@ body {
         #ff0000 100%
     );
 
-    background-size: 400% 400%;
+    background-size:400% 400%;
 
     animation:
     fadeIn 1s ease,
     gradientMove 12s ease infinite;
-
-    overflow-x: hidden;
 }
 
-/* ===== ANIMATIONS ===== */
+/* navbar */
 
-@keyframes fadeIn {
-
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-
+.navbar{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    background:rgba(0,0,0,0.7);
+    backdrop-filter:blur(12px);
+    display:flex;
+    justify-content:center;
+    gap:40px;
+    padding:18px 0;
+    z-index:9999;
 }
 
-@keyframes gradientMove {
-
-    0% {
-        background-position: 0% 50%;
-    }
-
-    50% {
-        background-position: 100% 50%;
-    }
-
-    100% {
-        background-position: 0% 50%;
-    }
-
+.navbar a{
+    color:white;
+    text-decoration:none;
+    font-size:18px;
+    font-weight:bold;
 }
 
-/* ===== NAVBAR ===== */
-
-.navbar {
-
-    position: fixed;
-
-    top: 0;
-    left: 0;
-
-    width: 100%;
-
-    padding: 18px 0;
-
-    background: rgba(0,0,0,0.65);
-
-    backdrop-filter: blur(12px);
-
-    display: flex;
-    justify-content: center;
-    gap: 40px;
-
-    z-index: 9999;
+.navbar a:hover{
+    color:red;
 }
 
-.navbar a {
-
-    color: white;
-
-    text-decoration: none;
-
-    font-size: 18px;
-    font-weight: bold;
-
-    transition: 0.3s;
+.navbar a.active{
+    color:red;
 }
 
-.navbar a:hover {
+/* card */
 
-    color: red;
+.subscribe-box{
 
-    transform: scale(1.1);
-}
+    width:380px;
 
-.active {
-    color: red !important;
-}
+    margin:auto;
 
-/* ===== BOX ===== */
+    text-align:center;
 
-.subscribe-box {
+    padding:40px;
 
-    margin-top: 140px;
+    border-radius:25px;
 
-    width: 360px;
+    background:rgba(255,255,255,0.06);
 
-    padding: 40px;
-
-    border-radius: 25px;
-
-    background: rgba(255,255,255,0.06);
-
-    backdrop-filter: blur(18px);
-
-    text-align: center;
+    backdrop-filter:blur(18px);
 
     box-shadow:
-        0 0 30px rgba(255,0,0,0.15);
-
-    transition: 0.3s;
+    0 0 25px rgba(255,0,0,0.2);
 }
 
-.subscribe-box:hover {
+.subscribe-box img{
 
-    transform: translateY(-8px);
+    width:140px;
+    height:140px;
 
-    box-shadow:
-        0 0 35px rgba(255,0,0,0.35);
+    border-radius:50%;
+
+    object-fit:cover;
+
+    border:3px solid red;
 }
 
-/* ===== IMAGE ===== */
+.subscribe-box h1{
 
-.subscribe-box img {
-
-    width: 140px;
-    height: 140px;
-
-    border-radius: 50%;
-
-    object-fit: cover;
-
-    border: 3px solid red;
-
-    box-shadow:
-        0 0 25px rgba(255,0,0,0.8);
-
-    transition: 0.3s;
+    margin-top:20px;
 }
 
-.subscribe-box img:hover {
+.subscribe-box p{
 
-    transform: scale(1.05);
+    color:#ccc;
 }
 
-/* ===== TITRE ===== */
+/* compteur */
 
-.subscribe-box h1 {
+.counter{
 
-    margin-top: 25px;
+    margin:30px 0;
 
-    font-size: 38px;
+    padding:20px;
+
+    border-radius:15px;
+
+    background:rgba(0,0,0,0.25);
 }
 
-.subscribe-box p {
+.counter h2{
 
-    color: #ccc;
-
-    line-height: 1.7;
+    margin:0;
+    color:red;
 }
 
-/* ===== COMPTEUR ===== */
+/* bouton */
 
-.compteur {
+.subscribe-btn{
 
-    width: 280px;
-    height: 95px;
+    padding:15px 35px;
 
-    margin: 30px auto;
+    border:none;
 
-    overflow: hidden;
+    border-radius:50px;
 
-    border-radius: 15px;
+    font-size:18px;
 
-    background: rgba(255,255,255,0.05);
+    font-weight:bold;
 
-    backdrop-filter: blur(10px);
+    color:white;
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    box-shadow:
-        0 0 20px rgba(255,0,0,0.2);
-}
-
-.compteur iframe {
-
-    width: 420px;
-    height: 120px;
-
-    border: none;
-
-    transform:
-    translate(-5px,-10px)
-    scale(1.05);
-}
-
-/* ===== BOUTON ===== */
-
-.subscribe-btn {
-
-    padding: 16px 38px;
-
-    border: none;
-
-    border-radius: 50px;
-
-    font-size: 20px;
-    font-weight: bold;
-
-    color: white;
-
-    cursor: pointer;
+    cursor:pointer;
 
     background:
     linear-gradient(
-        270deg,
-        #ff0000,
-        #ff4d4d,
-        #ff0000
-    );
+    270deg,
+    #ff0000,
+    #ff4d4d,
+    #ff0000);
 
-    box-shadow:
-        0 0 25px rgba(255,0,0,0.8);
-
-    transition: 0.3s;
-
-    position: relative;
-
-    overflow: hidden;
+    transition:0.3s;
 }
 
-.subscribe-btn:hover {
+.subscribe-btn:hover{
 
-    transform: scale(1.08);
+    transform:scale(1.05);
 }
 
-.subscribe-btn::before {
+/* footer */
 
-    content: "";
+footer{
 
-    position: absolute;
+    margin-top:80px;
 
-    top: 0;
-    left: -100%;
+    text-align:center;
 
-    width: 100%;
-    height: 100%;
+    padding:30px;
 
-    background:
-    linear-gradient(
-        120deg,
-        transparent,
-        rgba(255,255,255,0.5),
-        transparent
-    );
-
-    transition: 0.5s;
+    color:#aaa;
 }
 
-.subscribe-btn:hover::before {
+/* animations */
 
-    left: 100%;
-}
+@keyframes fadeIn{
 
-/* ===== NOTIFICATION ===== */
-
-#notif {
-
-    position: fixed;
-
-    top: 20px;
-    right: 20px;
-
-    background: rgba(0,0,0,0.85);
-
-    color: #00ff88;
-
-    padding: 15px 25px;
-
-    border-radius: 12px;
-
-    font-weight: bold;
-
-    opacity: 0;
-
-    transform: translateY(-20px);
-
-    transition: 0.4s;
-
-    z-index: 999999;
-}
-
-#notif.show {
-
-    opacity: 1;
-
-    transform: translateY(0);
-}
-
-/* ===== FOOTER ===== */
-
-footer {
-
-    margin-top: auto;
-
-    padding: 35px;
-
-    text-align: center;
-
-    color: rgba(255,255,255,0.7);
-}
-
-/* ===== RESPONSIVE ===== */
-
-@media (max-width: 768px) {
-
-    .navbar {
-
-        gap: 15px;
-
-        flex-wrap: wrap;
+    from{
+        opacity:0;
+        transform:translateY(20px);
     }
 
-    .navbar a {
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
 
-        font-size: 14px;
+@keyframes gradientMove{
+
+    0%{
+        background-position:0% 50%;
     }
 
-    .subscribe-box {
-
-        width: 85%;
+    50%{
+        background-position:100% 50%;
     }
 
+    100%{
+        background-position:0% 50%;
+    }
 }
 
-#topBtn {
-
-    display: none;
-
-    position: fixed;
-
-    bottom: 25px;
-    right: 25px;
-
-    width: 50px;
-    height: 50px;
-
-    border: none;
-
-    border-radius: 50%;
-
-    background: red;
-
-    color: white;
-
-    font-size: 22px;
-
-    cursor: pointer;
-
-    z-index: 9999;
-
-    transition: 0.3s;
-}
-
-#topBtn:hover {
-
-    transform: scale(1.1);
-
-    background: #ff2d2d;
-}
 </style>
 </head>
 
 <body>
 
-<button id="topBtn">↑</button>
-
-<script>
-
-const topBtn =
-document.getElementById("topBtn");
-
-window.onscroll = () => {
-
-    if(document.documentElement.scrollTop > 200){
-
-        topBtn.style.display = "block";
-
-    } else {
-
-        topBtn.style.display = "none";
-    }
-
-};
-
-topBtn.onclick = () => {
-
-    window.scrollTo({
-
-        top: 0,
-
-        behavior: "smooth"
-    });
-
-};
-
-</script>
-
-<!-- notif -->
-
-<div id="notif">
-
-✔ Merci pour l’abonnement !
-
-</div>
-
-<!-- navbar -->
-
 <nav class="navbar">
 
-    <a href="index.html">
-        Accueil
-    </a>
+    <a href="index.html">Accueil</a>
 
-    <a href="subscribe.html"
-    class="active">
-
+    <a href="subscribe.html" class="active">
         S'abonner
-
     </a>
 
-    <a href="video.html">
-        Vidéos
+    <a href="video.html">Vidéos</a>
+
+    <a href="apropos.html">À propos</a>
+
+    <a href="socials.html">Réseaux</a>
+
+    <a href="stats.html">Stats</a>
+
+<a href="mes jeux.html">
+    Mes Jeux
+</a>
+
+    <a href="platinums.html">
+        Platinums
     </a>
 
-    <a href="a propos.html">
-        À propos
-    </a>
-
-    <a href="socials.html">
-        Réseaux
-    </a>
+<a href="livre d'or.html">
+    Livre d'or
+</a>
 
 </nav>
 
-<!-- box -->
-
 <div class="subscribe-box">
 
-    <img
-    src="8caad655-b47e-44da-b65c-c3bf5e8be028.png"
-    alt="profil">
+    <img src="8caad655-b47e-44da-b65c-c3bf5e8be028.png">
 
     <h1>SUHOX_</h1>
 
     <p>
-
-        Rejoins la communauté gaming 🔥
-
+        Merci de soutenir la chaîne ❤️
     </p>
 
-    <!-- compteur -->
+    <div class="counter">
 
-    <div class="compteur">
-
-        <iframe
-        src="https://livecounts.org/compteur-youtube/UCmb4flfRx7I1F1U9bHd_y6A">
-        </iframe>
+        <h2 id="subs">
+            Rejoins la communauté SUHOX_
+        </h2>
 
     </div>
-
-    <!-- bouton -->
 
     <button
     class="subscribe-btn"
     id="btn">
 
-        🔔 S’abonner à la chaîne
+        🔔 S'abonner
 
     </button>
 
 </div>
 
-<!-- footer -->
-
 <footer>
 
-    <p>
-
-        © 2026 SUHOX_ - All rights reserved
-
-    </p>
-
-    <p>
-
-        Gaming • Fun • Community
-
-    </p>
+    © 2026 SUHOX_ - All rights reserved
 
 </footer>
 
 <script>
 
-/* ===== ABONNEMENT ===== */
-
 const btn =
 document.getElementById("btn");
-
-const notif =
-document.getElementById("notif");
 
 let subscribed =
 localStorage.getItem("subscribed")
@@ -558,55 +285,116 @@ updateButton();
 
 btn.addEventListener("click", () => {
 
-    if(!subscribed){
+    window.open(
+    "https://youtube.com/@ahn_su_ho_456?sub_confirmation=1",
+    "_blank"
+    );
 
-        window.open(
-        "https://youtube.com/@salesman_gong_yoo_456?sub_confirmation=1",
-        "_blank"
-        );
-
-        notif.classList.add("show");
-
-        setTimeout(() => {
-
-            notif.classList.remove("show");
-
-        }, 2500);
-
-        subscribed = true;
-
-    }
+    subscribed = true;
 
     localStorage.setItem(
     "subscribed",
-    subscribed
+    "true"
     );
 
     updateButton();
 
 });
 
-/* ===== UPDATE ===== */
-
 function updateButton(){
 
     if(subscribed){
 
-        btn.textContent =
-        "Abonné ✔";
+        btn.innerHTML =
+        "✔ Abonné";
 
         btn.style.background =
-        "linear-gradient(270deg,#00c853,#00e676,#00c853)";
+        "#00c853";
 
-    } else {
-
-        btn.textContent =
-        "🔔 S’abonner à la chaîne";
     }
-
 }
 
 </script>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+const SUPABASE_URL =
+"https://xfufmbotgnzoinojrwlu.supabase.co";
+
+const SUPABASE_KEY =
+"sb_publishable_Yic1JgOXTwPsBk46JzGRFQ_h2hTvsmI";
+
+const supabaseClient =
+supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+);
+
+
+// Créer ou récupérer un identifiant anonyme
+function getVisitorId() {
+
+    let visitorId =
+    localStorage.getItem("suhox_visitor_id");
+
+    if (!visitorId) {
+
+        visitorId =
+        crypto.randomUUID();
+
+        localStorage.setItem(
+            "suhox_visitor_id",
+            visitorId
+        );
+
+    }
+
+    return visitorId;
+}
+
+
+// Enregistrer la visite
+async function enregistrerVisite() {
+
+    const visitorId =
+    getVisitorId();
+
+    const page =
+    window.location.pathname;
+
+    const {
+        error
+    } =
+    await supabaseClient
+    .from("analytics_visits")
+    .insert({
+
+        visitor_id:
+        visitorId,
+
+        page:
+        page
+
+    });
+
+    if (error) {
+
+        console.error(
+            "Erreur Analytics :",
+            error
+        );
+
+    }
+
+}
+
+
+// Lancer le suivi
+enregistrerVisite();
+
+</script>
+
 </body>
+
 </html>

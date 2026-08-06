@@ -1,6 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="fr">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -40,39 +43,55 @@ body {
     gradientMove 12s ease infinite;
 
     overflow-x: hidden;
+
 }
+
 
 /* ===== ANIMATIONS ===== */
 
 @keyframes fadeIn {
 
     from {
+
         opacity: 0;
+
         transform: translateY(20px);
+
     }
 
     to {
+
         opacity: 1;
+
         transform: translateY(0);
+
     }
 
 }
+
 
 @keyframes gradientMove {
 
     0% {
+
         background-position: 0% 50%;
+
     }
 
     50% {
+
         background-position: 100% 50%;
+
     }
 
     100% {
+
         background-position: 0% 50%;
+
     }
 
 }
+
 
 /* ===== NAVBAR ===== */
 
@@ -81,6 +100,7 @@ body {
     position: fixed;
 
     top: 0;
+
     left: 0;
 
     width: 100%;
@@ -98,7 +118,9 @@ body {
     padding: 18px 0;
 
     z-index: 9999;
+
 }
+
 
 .navbar a {
 
@@ -111,19 +133,25 @@ body {
     font-weight: bold;
 
     transition: 0.3s;
+
 }
+
 
 .navbar a:hover {
 
     color: red;
 
     transform: scale(1.08);
+
 }
+
 
 .navbar a.active {
 
     color: red !important;
+
 }
+
 
 /* ===== HEADER ===== */
 
@@ -132,21 +160,27 @@ body {
     text-align: center;
 
     margin-bottom: 60px;
+
 }
+
 
 .header h1 {
 
     font-size: 50px;
 
     margin-bottom: 15px;
+
 }
+
 
 .header p {
 
     color: #ccc;
 
     font-size: 18px;
+
 }
+
 
 /* ===== CARD ===== */
 
@@ -172,7 +206,9 @@ body {
     transition: 0.3s;
 
     text-align: center;
+
 }
+
 
 .about-card:hover {
 
@@ -181,13 +217,16 @@ body {
 
     box-shadow:
         0 0 35px rgba(255,0,0,0.35);
+
 }
+
 
 /* ===== IMAGE ===== */
 
 .about-card img {
 
     width: 150px;
+
     height: 150px;
 
     border-radius: 50%;
@@ -200,7 +239,9 @@ body {
         0 0 25px rgba(255,0,0,0.8);
 
     margin-bottom: 25px;
+
 }
+
 
 /* ===== TEXT ===== */
 
@@ -209,7 +250,9 @@ body {
     font-size: 35px;
 
     margin-bottom: 25px;
+
 }
+
 
 .about-card p {
 
@@ -220,7 +263,9 @@ body {
     line-height: 1.9;
 
     margin-bottom: 20px;
+
 }
+
 
 /* ===== STATS ===== */
 
@@ -235,7 +280,9 @@ body {
     gap: 40px;
 
     flex-wrap: wrap;
+
 }
+
 
 .stat-box {
 
@@ -251,7 +298,9 @@ body {
         0 0 20px rgba(255,0,0,0.15);
 
     transition: 0.3s;
+
 }
+
 
 .stat-box:hover {
 
@@ -259,7 +308,9 @@ body {
 
     box-shadow:
         0 0 25px rgba(255,0,0,0.35);
+
 }
+
 
 .stat-box h3 {
 
@@ -268,62 +319,20 @@ body {
     color: red;
 
     margin-bottom: 10px;
+
 }
+
 
 .stat-box p {
 
     margin: 0;
 
     color: #ccc;
-}
-
-/* ===== FOOTER ===== */
-
-footer {
-
-    margin-top: 80px;
-
-    padding: 35px;
-
-    text-align: center;
-
-    color: rgba(255,255,255,0.7);
-}
-
-/* ===== RESPONSIVE ===== */
-
-@media (max-width: 768px) {
-
-    .navbar {
-
-        gap: 15px;
-
-        flex-wrap: wrap;
-    }
-
-    .navbar a {
-
-        font-size: 14px;
-    }
-
-    .header h1 {
-
-        font-size: 35px;
-    }
-
-    .about-card {
-
-        width: 90%;
-
-        padding: 25px;
-    }
-
-    .stats {
-
-        gap: 20px;
-    }
 
 }
+
+
+/* ===== RETOUR EN HAUT ===== */
 
 #topBtn {
 
@@ -332,9 +341,11 @@ footer {
     position: fixed;
 
     bottom: 25px;
+
     right: 25px;
 
     width: 50px;
+
     height: 50px;
 
     border: none;
@@ -352,38 +363,250 @@ footer {
     z-index: 9999;
 
     transition: 0.3s;
+
 }
+
 
 #topBtn:hover {
 
     transform: scale(1.1);
 
     background: #ff2d2d;
+
 }
+
+
+/* ===== FOOTER ===== */
+
+footer {
+
+    margin-top: 80px;
+
+    padding: 35px;
+
+    text-align: center;
+
+    color: rgba(255,255,255,0.7);
+
+}
+
+
+/* ===== RESPONSIVE ===== */
+
+@media (max-width: 768px) {
+
+    .navbar {
+
+        gap: 15px;
+
+        flex-wrap: wrap;
+
+    }
+
+
+    .navbar a {
+
+        font-size: 14px;
+
+    }
+
+
+    .header h1 {
+
+        font-size: 35px;
+
+    }
+
+
+    .about-card {
+
+        width: 90%;
+
+        padding: 25px;
+
+        box-sizing: border-box;
+
+    }
+
+
+    .stats {
+
+        gap: 20px;
+
+    }
+
+}
+
 </style>
+
 </head>
 
 <body>
 
+<!-- ===== BOUTON RETOUR EN HAUT ===== -->
+
 <button id="topBtn">↑</button>
+
+<!-- ===== NAVBAR ===== -->
+
+<nav class="navbar">
+
+<a href="index.html">
+    Accueil
+</a>
+
+<a href="subscribe.html">
+    S'abonner
+</a>
+
+<a href="video.html">
+    Vidéos
+</a>
+
+<a href="a propos.html" class="active">
+    À propos
+</a>
+
+<a href="socials.html">
+    Réseaux
+</a>
+
+<a href="stats.html">
+    Stats
+</a>
+
+<a href="mes jeux.html">
+    Mes Jeux
+</a>
+
+<a href="platinums.html">
+    Platinums
+</a>
+
+<a href="livre d'or.html">
+    Livre d'or
+</a>
+
+</nav>
+
+<!-- ===== HEADER ===== -->
+
+<div class="header">
+
+<h1>
+    À propos 🔥
+</h1>
+
+<p>
+    Découvre mon univers gaming
+</p>
+
+</div>
+
+<!-- ===== CARD ===== -->
+
+<div class="about-card">
+
+<img
+    src="8caad655-b47e-44da-b65c-c3bf5e8be028.png"
+    alt="Profil SUHOX_"
+>
+
+
+<h2>
+    SUHOX_
+</h2>
+
+
+<p>
+
+    Je suis créateur de contenu gaming passionné.
+    Je partage gameplay, défis, fun,
+    moments épiques et divertissement.
+
+</p>
+
+
+<p>
+
+    Mon objectif est de construire
+    une communauté active autour du jeu vidéo.
+
+</p>
+
+
+<p>
+
+    Si tu aimes le gaming et les vidéos fun,
+    tu es au bon endroit 🔥
+
+</p>
+
+
+<!-- ===== STATS ===== -->
+
+<div class="stats">
+
+    <div class="stat-box">
+
+        <p>
+            Objectif :
+        </p>
+
+        <h3>
+            50
+        </h3>
+
+        <p>
+            Abonnés
+        </p>
+
+    </div>
+
+</div>
+
+</div>
+
+<!-- ===== FOOTER ===== -->
+
+<footer>
+
+<p>
+    © 2026 SUHOX_ - All rights reserved
+</p>
+
+<p>
+    Gaming • Fun • Community
+</p>
+
+</footer>
+
+<!-- ===== SCRIPT RETOUR EN HAUT ===== -->
 
 <script>
 
 const topBtn =
 document.getElementById("topBtn");
 
+
 window.onscroll = () => {
 
-    if(document.documentElement.scrollTop > 200){
+    if (
+        document.documentElement.scrollTop > 200
+    ) {
 
-        topBtn.style.display = "block";
+        topBtn.style.display =
+        "block";
 
     } else {
 
-        topBtn.style.display = "none";
+        topBtn.style.display =
+        "none";
+
     }
 
 };
+
 
 topBtn.onclick = () => {
 
@@ -392,121 +615,121 @@ topBtn.onclick = () => {
         top: 0,
 
         behavior: "smooth"
+
     });
 
 };
 
 </script>
 
-<!-- NAVBAR -->
+<!-- ===== SUPABASE ANALYTICS ===== -->
 
-<nav class="navbar">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-    <a href="index.html">
-        Accueil
-    </a>
+<script>
 
-    <a href="subscribe.html">
-        S'abonner
-    </a>
+const SUPABASE_URL =
+"https://xfufmbotgnzoinojrwlu.supabase.co";
 
-    <a href="video.html">
-        Vidéos
-    </a>
 
-    <a href="apropos.html"
-    class="active">
+const SUPABASE_KEY =
+"sb_publishable_Yic1JgOXTwPsBk46JzGRFQ_h2hTvsmI";
 
-        À propos
 
-    </a>
+const supabaseClient =
+supabase.createClient(
 
-    <a href="socials.html">
-        Réseaux
-    </a>
+    SUPABASE_URL,
 
-</nav>
+    SUPABASE_KEY
 
-<!-- HEADER -->
+);
 
-<div class="header">
 
-    <h1>À propos 🔥</h1>
+// ===== CRÉER OU RÉCUPÉRER UN IDENTIFIANT ANONYME =====
 
-    <p>
+function getVisitorId() {
 
-        Découvre mon univers gaming
+    let visitorId =
+    localStorage.getItem(
+        "suhox_visitor_id"
+    );
 
-    </p>
 
-</div>
+    if (!visitorId) {
 
-<!-- CARD -->
+        visitorId =
+        crypto.randomUUID();
 
-<div class="about-card">
 
-    <img
-    src="8caad655-b47e-44da-b65c-c3bf5e8be028.png"
-    alt="profil">
+        localStorage.setItem(
 
-    <h2>SUHOX_</h2>
+            "suhox_visitor_id",
 
-    <p>
+            visitorId
 
-        Je suis créateur de contenu gaming passionné.
-        Je partage gameplay, défis, fun,
-        moments épiques et divertissement.
+        );
 
-    </p>
+    }
 
-    <p>
 
-        Mon objectif est de construire
-        une communauté active autour du jeu vidéo.
+    return visitorId;
 
-    </p>
+}
 
-    <p>
 
-        Si tu aimes le gaming et les vidéos fun,
-        tu es au bon endroit 🔥
+// ===== ENREGISTRER LA VISITE =====
 
-    </p>
+async function enregistrerVisite() {
 
-    <!-- STATS -->
+    const visitorId =
+    getVisitorId();
 
-    <div class="stats">
 
-        <div class="stat-box">
-            <p>objectif:</p>
+    const page =
+    window.location.pathname;
 
-            <h3>50</h3>
 
-            <p>Abonnés</p>
+    const {
+        error
+    } =
 
-        </div>
+    await supabaseClient
 
-    </div>
+    .from("analytics_visits")
 
-</div>
+    .insert({
 
-<!-- FOOTER -->
+        visitor_id:
+        visitorId,
 
-<footer>
+        page:
+        page
 
-    <p>
+    });
 
-        © 2026 SUHOX_ - All rights reserved
 
-    </p>
+    if (error) {
 
-    <p>
+        console.error(
 
-        Gaming • Fun • Community
+            "Erreur Analytics :",
 
-    </p>
+            error
 
-</footer>
+        );
+
+    }
+
+}
+
+
+// ===== LANCER LE SUIVI =====
+
+enregistrerVisite();
+
+</script>
 
 </body>
+
 </html>
