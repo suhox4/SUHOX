@@ -1,0 +1,83 @@
+/* ===== MENU MOBILE SUHOX_ ===== */
+
+.mobile-menu-button {
+    display: none;
+}
+
+@media (max-width: 768px) {
+
+    body {
+        overflow-x: hidden !important;
+    }
+
+    .navbar {
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        width: 100% !important;
+        height: auto !important;
+        box-sizing: border-box !important;
+        display: none !important;
+        flex-direction: column !important;
+        align-items: stretch !important;
+        justify-content: flex-start !important;
+        gap: 0 !important;
+        padding: 65px 15px 15px !important;
+        background: rgba(0,0,0,0.94) !important;
+        backdrop-filter: blur(14px) !important;
+        -webkit-backdrop-filter: blur(14px) !important;
+        z-index: 10000 !important;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.45) !important;
+        max-height: 100vh !important;
+        max-height: 100dvh !important;
+        overflow-y: auto !important;
+    }
+
+    .navbar.mobile-menu-open {
+        display: flex !important;
+    }
+
+    .navbar a {
+        display: block !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+        padding: 14px 12px !important;
+        margin: 0 !important;
+        text-align: center !important;
+        font-size: 17px !important;
+        line-height: 1.2 !important;
+        white-space: normal !important;
+        border-bottom: 1px solid rgba(255,255,255,0.08) !important;
+    }
+
+    .navbar a:last-child {
+        border-bottom: none !important;
+    }
+
+    .mobile-menu-button {
+        display: flex !important;
+        position: fixed !important;
+        top: 12px !important;
+        right: 14px !important;
+        width: 48px !important;
+        height: 48px !important;
+        align-items: center !important;
+        justify-content: center !important;
+        padding: 0 !important;
+        border: 2px solid rgba(255,255,255,0.18) !important;
+        border-radius: 14px !important;
+        background: rgba(0,0,0,0.82) !important;
+        color: white !important;
+        font-size: 27px !important;
+        line-height: 1 !important;
+        cursor: pointer !important;
+        z-index: 10001 !important;
+        box-shadow: 0 0 15px rgba(255,0,0,0.25) !important;
+    }
+
+    .mobile-menu-button:active {
+        transform: scale(0.95);
+    }
+
+}
