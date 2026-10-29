@@ -10,6 +10,8 @@
 
 <title>Administration - SUHOX_</title>
 
+<meta name="robots" content="noindex, nofollow">
+
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
@@ -268,6 +270,31 @@ button:hover {
 
 }
 
+
+/* ===== PERFORMANCE MOBILE ===== */
+
+@media (max-width: 768px), (prefers-reduced-motion: reduce) {
+
+    body {
+        animation: none;
+    }
+
+    [class*="card"],
+    .guestbook-form,
+    .admin-zone,
+    .update-info,
+    .goal,
+    .subscribe-box {
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+    }
+
+    .progress {
+        animation: none;
+    }
+
+}
+
 </style>
 
 </head>
@@ -434,9 +461,7 @@ button:hover {
     id="totalVisits"
     class="visitor-stat-number">
 
-```
 -
-```
 
 </div>
 
@@ -452,9 +477,7 @@ button:hover {
     id="uniqueVisitors"
     class="visitor-stat-number">
 
-```
 -
-```
 
 </div>
 
@@ -470,9 +493,7 @@ button:hover {
     id="todayVisits"
     class="visitor-stat-number">
 
-```
 -
-```
 
 </div>
 
@@ -488,9 +509,7 @@ button:hover {
     id="pagesVisited"
     class="visitor-stat-number">
 
-```
 -
-```
 
 </div>
 
@@ -506,9 +525,7 @@ button:hover {
 
 <div id="pagesList">
 
-```
 Chargement...
-```
 
 </div>
 
@@ -518,9 +535,7 @@ Chargement...
  id="refreshVisitorStatsBtn"
  class="refresh-btn">
 
-```
 🔄 Actualiser les visiteurs
-```
 
 </button>
 
@@ -630,9 +645,7 @@ Chargement...
  class="logout"
  id="logoutBtn">
 
-```
 🚪 Se déconnecter
-```
 
 </button>
 
@@ -640,9 +653,7 @@ Chargement...
  href="index.html"
  class="back">
 
-```
 ← Retour au site
-```
 
 </a>
 
@@ -754,6 +765,10 @@ function afficherAdmin() {
 
     adminSection.style.display =
     "block";
+
+    try {
+        localStorage.setItem("suhox_ignore_visits", "1");
+    } catch (e) {}
 
     chargerStats();
 
@@ -1086,6 +1101,51 @@ document
 
 /* ===== STATISTIQUES VISITEURS ===== */
 
+/* ===== CHARGER TOUTES LES VISITES (par pages de 1000) ===== */
+
+async function chargerToutesLesVisites() {
+
+    const taillePage = 1000;
+
+    let debut = 0;
+
+    let toutes = [];
+
+    while (true) {
+
+        const {
+            data,
+            error
+        } =
+        await supabaseClient
+        .from("analytics_visits")
+        .select("visitor_id, page, created_at")
+        .order("created_at", { ascending: true })
+        .range(debut, debut + taillePage - 1);
+
+        if (error) {
+
+            return { data: null, error: error };
+
+        }
+
+        toutes = toutes.concat(data);
+
+        if (data.length < taillePage) {
+
+            break;
+
+        }
+
+        debut += taillePage;
+
+    }
+
+    return { data: toutes, error: null };
+
+}
+
+
 async function chargerStatistiquesVisiteurs() {
 
     const status =
@@ -1102,11 +1162,7 @@ async function chargerStatistiquesVisiteurs() {
         data,
         error
     } =
-    await supabaseClient
-    .from("analytics_visits")
-    .select(
-        "visitor_id, page, created_at"
-    );
+    await chargerToutesLesVisites();
 
 
     if (error) {
@@ -2194,7 +2250,9 @@ function escapeHTML(text) {
     div.textContent =
     text || "";
 
-    return div.innerHTML;
+    return div.innerHTML
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
 
 }
 

@@ -4,12 +4,29 @@
 <head>
 
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="mobile-menu.css">
 
 <title>Livre d'or - SUHOX_</title>
 
-<link rel="icon" href="8caad655-b47e-44da-b65c-c3bf5e8be028.png">
+<meta name="description" content="Laisse un message dans le livre d'or de SUHOX_ et lis ceux de la communauté.">
+<meta name="theme-color" content="#000000">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="SUHOX_">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:title" content="Livre d'or - SUHOX_">
+<meta property="og:description" content="Laisse un message dans le livre d'or de SUHOX_ et lis ceux de la communauté.">
+<meta property="og:image" content="https://suhox4.github.io/SUHOX/apercu.jpg">
+<meta property="og:image:alt" content="Logo SUHOX_">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Livre d'or - SUHOX_">
+<meta name="twitter:image" content="https://suhox4.github.io/SUHOX/apercu.jpg">
+<meta name="twitter:description" content="Laisse un message dans le livre d'or de SUHOX_ et lis ceux de la communauté.">
+
+
+<link rel="icon" type="image/png" href="favicon.png">
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
@@ -556,6 +573,31 @@ footer {
 
 }
 
+
+/* ===== PERFORMANCE MOBILE ===== */
+
+@media (max-width: 768px), (prefers-reduced-motion: reduce) {
+
+    body {
+        animation: fadeIn 1s ease;
+    }
+
+    [class*="card"],
+    .guestbook-form,
+    .admin-zone,
+    .update-info,
+    .goal,
+    .subscribe-box {
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+    }
+
+    .progress {
+        animation: none;
+    }
+
+}
+
 </style>
 
 </head>
@@ -746,6 +788,55 @@ footer {
 <script>
 
 /* =====================================================
+   BOUTON RETOUR EN HAUT
+===================================================== */
+
+const topBtn =
+document.getElementById(
+    "topBtn"
+);
+
+
+window.onscroll =
+() => {
+
+    if (
+        document.documentElement.scrollTop > 200
+    ) {
+
+        topBtn.style.display =
+        "block";
+
+    } else {
+
+        topBtn.style.display =
+        "none";
+
+    }
+
+};
+
+
+topBtn.onclick =
+() => {
+
+    window.scrollTo({
+
+        top:
+        0,
+
+        behavior:
+        "smooth"
+
+    });
+
+};
+
+</script>
+
+<script>
+
+/* =====================================================
    CONFIGURATION SUPABASE
 ===================================================== */
 
@@ -799,6 +890,13 @@ function getVisitorId() {
 
 
 async function enregistrerVisite() {
+
+    try {
+        if (localStorage.getItem("suhox_ignore_visits") === "1") {
+            return;
+        }
+    } catch (e) {}
+
 
     try {
 
@@ -1433,54 +1531,10 @@ async function checkSession() {
 checkSession();
 
 
-/* =====================================================
-   BOUTON RETOUR EN HAUT
-===================================================== */
-
-const topBtn =
-document.getElementById(
-    "topBtn"
-);
-
-
-window.onscroll =
-() => {
-
-    if (
-        document.documentElement.scrollTop > 200
-    ) {
-
-        topBtn.style.display =
-        "block";
-
-    } else {
-
-        topBtn.style.display =
-        "none";
-
-    }
-
-};
-
-
-topBtn.onclick =
-() => {
-
-    window.scrollTo({
-
-        top:
-        0,
-
-        behavior:
-        "smooth"
-
-    });
-
-};
-
 </script>
 
+<script src="mobile-menu.js"></script>
 
 </body>
 
-</html>
+</html>

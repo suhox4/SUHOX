@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://suhox4.github.io/SUHOX/sitemap.xml
